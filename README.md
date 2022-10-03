@@ -25,6 +25,7 @@
 <2>またそれを扱っているメーカーやお店情報を見たい時
 
 ## 設計書
+<0>機能リスト　：　https://docs.google.com/spreadsheets/d/169sUv5-aiWkSHcu4Xn1P-lk_Jo7L7kybbhsTbWX_T2o/edit?usp=sharing<br>
 <1>UI Flows　:　https://drive.google.com/file/d/1-ZXn-XeKC6RyWOoiAYNNJ4SQ90AybkCU/view?usp=sharing<br>
 <2>ワイヤーフレーム(顧客側)　:　https://drive.google.com/file/d/1w96Wzyu9xvIFbe89wLBXIEIUPt3Orn0W/view?usp=sharing <br>
 &emsp;&emsp;ワイヤーフレーム(店側)　:　https://drive.google.com/file/d/15q7ovRD7NeVsxrp9EGf66NiXskXz25JE/view?usp=sharing <br>
