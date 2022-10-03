@@ -31,6 +31,7 @@
 &emsp;&emsp;ワイヤーフレーム(店側)　:　https://drive.google.com/file/d/15q7ovRD7NeVsxrp9EGf66NiXskXz25JE/view?usp=sharing <br>
 &emsp;&emsp;ワイヤーフレーム(管理側)　:　https://drive.google.com/file/d/1ba1oOYvOab6hEtVzkfi3JbG_f7-ufSad/view?usp=sharing <br>
 <3>ER図　：　 https://drive.google.com/file/d/1JWqBujjbv7MSwixqDb08E_EENZIPUi9X/view?usp=sharing <br>
+<4>テーブル定義書　：　https://docs.google.com/spreadsheets/d/1c-WF1jaam5wLdN3UlhDs-8wC1KBm5aauUC3O0b_sddI/edit?usp=sharing<br>
    
 ## 開発環境
 - OS：Linux(CentOS)
