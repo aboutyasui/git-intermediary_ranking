@@ -70,3 +70,21 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+#ログイン機能の追加
+gem 'devise'
+
+#ページネーション機能
+gem 'kaminari','~> 1.2.1'
+
+#Rubyのヴァージョンアップにより外部Gemになった機能を追加→これがない場合エラー発生の原因になってしまうため追加
+gem 'net-smtp'
+gem 'net-imap'
+gem 'net-pop'
+
+#enumの導入
+gem "enum_help"
+
+#デバックツールの導入
+gem 'pry-rails'
+
