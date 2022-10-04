@@ -36,6 +36,7 @@ UI Flows　:　https://drive.google.com/file/d/1-ZXn-XeKC6RyWOoiAYNNJ4SQ90AybkCU
 ワイヤーフレーム(管理側)　:　https://drive.google.com/file/d/1ba1oOYvOab6hEtVzkfi3JbG_f7-ufSad/view?usp=sharing <br>
 ER図　：　 https://drive.google.com/file/d/1JWqBujjbv7MSwixqDb08E_EENZIPUi9X/view?usp=sharing <br>
 テーブル定義書　：　https://docs.google.com/spreadsheets/d/1c-WF1jaam5wLdN3UlhDs-8wC1KBm5aauUC3O0b_sddI/edit?usp=sharing<br>
+アプリケーション詳細設計書　：　https://docs.google.com/spreadsheets/d/1kIPcvTtgXXwiE8PeX7FQXlyd_lh7ow-YfJ1iphynO7A/edit?usp=sharing<br>
    
 ## 開発環境
 - OS：Linux(CentOS)
