@@ -1,0 +1,2 @@
+module Vendor::TradersHelper
+end
