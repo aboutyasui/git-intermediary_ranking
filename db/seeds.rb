@@ -27,13 +27,22 @@ Genre.create!(
   Client.create!(
     email: "client#{n + 1}@test.com",
     name: "テスト太郎#{n + 1}",
-    work: "建築関係",
+    work: 0,
     client_info: "test_info#{n + 1}",
     password: "aaa111#{n + 1}",
     telephone_number: "0900000123#{n + 1}",
     is_deleted: false,
   )
 end
+Client.create!(
+    email: "client99@test.com",
+    name: "テスト太郎99",
+    work: 1,
+    client_info: "test_info99",
+    password: "aaa11199",
+    telephone_number: "09000001239",
+    is_deleted: true,
+  )
 
   Trader.create!(
     [
@@ -72,6 +81,15 @@ end
         password: "aaa1114",
         telephone_number: "09000001234",
         is_deleted: false,
+      },
+      {
+        genre_id: 1,
+        email: "trader5@test.com",
+        name: "悪徳材料店",
+        trader_info: "退会済みの店",
+        password: "aaa1115",
+        telephone_number: "01944001234",
+        is_deleted: true,
       }
     ]
   )
@@ -81,4 +99,38 @@ Admin.create!(
    password: 'aboutadmin',
    name: 'admin1'
 )
-
+5.times do |n|
+  Post.create!(
+    trader_id: 1,
+    title: "テスト投稿#{n + 1}",
+    body: "テスト内容#{n + 1}",
+  )
+end
+5.times do |n|
+  Post.create!(
+    trader_id: 2,
+    title: "テスト投稿#{n + 1}",
+    body: "テスト内容#{n + 1}",
+  )
+end
+5.times do |n|
+  Post.create!(
+    trader_id: 3,
+    title: "テスト投稿#{n + 1}",
+    body: "テスト内容#{n + 1}",
+  )
+end
+5.times do |n|
+  Post.create!(
+    trader_id: 4,
+    title: "テスト投稿#{n + 1}",
+    body: "テスト内容#{n + 1}",
+  )
+end
+5.times do |n|
+  Post.create!(
+    trader_id: 5,
+    title: "退会済み会員の投稿#{n + 1}",
+    body: "テスト内容#{n + 1}",
+  )
+end

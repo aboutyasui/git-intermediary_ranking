@@ -1,27 +1,40 @@
-<section class="section mt-6">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-5">
-        <div class="card mb-6">
-          <header class="card-header">
-            <p class="card-header-title">
-              <%= @trader.name %>
-            </p>
-          </header>
-          <div class="card-content">
-            <div class="content average-score">
-              <div class="star-rating mb-2">
-                <div class="star-rating-front" style="width: %">★★★★★</div>
-                <div class="star-rating-back">★★★★★</div>
-              </div>
-              <div class="average-score-display ml-3 pt-2">
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <%= render 'trader/reviews/form', review: @review, trader_user: @trader %>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="container">
+	<div class="row d-flex">
+		<div class="col-xs-offset-1 col-xs-8">
+			<h2 class="head-line text-center title_h3"><%= @trader.name %>さん 詳細情報</h2>
+			<p>
+				登録情報
+				<%= link_to " 編集する", edit_trader_user_path(@trader.id), class: "btn btn-success" %>
+			</p>
+			<table class="table table-bordered table-condensed" >
+				<tbody>
+					<tr>
+						<td class="info col-xs-2">業者名</td>
+						<td class="text-left"><%= @trader.name %></td>
+					</tr>
+					<tr>
+						<td class="info">メールアドレス</td>
+						<td class="text-left"><%= @trader.email %></td>
+					</tr>
+					<tr>
+						<td class="info">ジャンル</td>
+						<td class="text-left"><%= @trader.genre_id %></td>
+					</tr>
+					<tr>
+						<td class="info">会社情報</td>
+						<td class="text-left"><%= @trader.trader_info %></td>
+					</tr>
+					<tr>
+						<td class="info">電話番号</td>
+						<td class="text-left"><%= @trader.telephone_number %></td>
+					</tr>
+				</tbody>
+			</table>
+			<p>
+				投稿履歴
+				<%= link_to " 一覧を見る", trader_posts_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+			  <%= link_to "新規投稿",new_trader_post_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+			</p>
+		</div>
+	</div>
+</div>

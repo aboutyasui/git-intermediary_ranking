@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DeviseCreateClients < ActiveRecord::Migration[7.0]
+class DeviseCreateClients < ActiveRecord::Migration[6.1]
   def change
     create_table :clients do |t|
       ## Database authenticatable
@@ -34,7 +34,7 @@ class DeviseCreateClients < ActiveRecord::Migration[7.0]
 
       ##名前等を保存するカラム
       t.string :name, null: false
-      t.string :work, null: false
+      t.integer :work, null: false,default: 1
       t.text :client_info
       t.string :telephone_number, null: false
       t.boolean :is_deleted, null: false, default: false

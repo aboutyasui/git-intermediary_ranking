@@ -1,2 +1,108 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container px-5 px-sm-0">
+    <% if client_signed_in? %><!--clientでログインした場合-->
+      <div class="row d-flex">
+        <div class="col-md-3">
+          <div><!--%= render 'genreのフォルダ先を入力' %--></div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-9">
+          <strong style="font-size:25px;">業者一覧</strong>
+          <table class='table table-hover table-inverse'>
+            <thead>
+              <tr>
+                <th>業者名</th>
+                <th>メールアドレス</th>
+                <th>連絡先</th>
+                <th>ジャンル</th>
+                <th colspan="2">評価結果（平均値）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @traders.each do |trader| %>
+              <tr>
+                <td><%= trader.name %></td>
+                <td><%= trader.email %></td>
+                <td><%= trader.telephone_number %></td>
+                <!--td><!%= trader.genre_id_i18n %></td-->
+                <td>評価平均：<!--%= item.price.to_s(:delimited) %--><!--レビューの平均値を表示予定--></td>
+                <td>
+                  <!--%= link_to "評価する",edit_book_path(@book), class:'btn btn-sm btn-success'%-->
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @traders %>
+        </div>
+      </div>
+    <% elsif trader_signed_in? %><!--traderでログインした場合-->
+      <div class="row d-flex">
+        <div class="col-md-3">
+          <div><!--%= render 'genreのフォルダ先を入力' %--></div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-9">
+          <strong style="font-size:25px;">顧客一覧</strong>
+          <table class='table table-hover table-inverse'>
+            <thead>
+              <tr>
+                <th>氏名</th>
+                <th>メールアドレス</th>
+                <th>連絡先</th>
+                <th>職業</th>
+                <th>評価結果</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @clients.each do |client| %>
+              <tr>
+                <td><%= client.name %></td>
+                <td><%= client.email %></td>
+                <td><%= client.telephone_number %></td>
+                <td><%= client.work_i18n %></td>
+                <td>評価結果：☆<!--%= item.price.to_s(:delimited) %--><!--レビューの平均値を表示予定--></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @clients %>
+        </div>
+      </div>
+    <% else %><!--ログアウトした場合-->
+      <div class="row d-flex">
+        <div class="col-md-3">
+          <div><!--%= render 'genreのフォルダ先を入力' %--></div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-9">
+          <strong style="font-size:25px;">業者一覧</strong>
+          <table class='table table-hover table-inverse'>
+            <thead>
+              <tr>
+                <th>業者名</th>
+                <th>メールアドレス</th>
+                <th>連絡先</th>
+                <th>ジャンル</th>
+                <th>評価結果（平均値）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @traders.each do |trader| %>
+              <tr>
+                <td><%= trader.name %></td>
+                <td><%= trader.email %></td>
+                <td><%= trader.telephone_number %></td>
+                <!--td><!%= trader.genre_id_i18n %></td-->
+                <td>評価平均：<!--%= item.price.to_s(:delimited) %--><!--レビューの平均値を表示予定--></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @traders %>
+        </div>
+      </div>
+  <% end %>
+</div>

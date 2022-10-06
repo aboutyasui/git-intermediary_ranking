@@ -1,6 +1,6 @@
 class Trader::ReviewsController < ApplicationController
   def new
-    @review = Review.
+    #@review = Review.new
   end
 
   def create
