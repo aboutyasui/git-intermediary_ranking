@@ -1,0 +1,45 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-offset-1 col-xs-8">
+			<h2 class="head-line text-center title_h3"><%= @client.name %>さん 詳細情報</h2>
+			<p>
+				登録情報
+				<%= link_to " 編集する", edit_client_user_path(@client.id), class: "btn btn-success" %>
+			</p>
+
+			<table class="table table-bordered table-condensed" >
+				<tbody>
+					<tr>
+						<td class="info col-xs-2">氏名</td>
+						<td class="text-left"><%= @client.name %></td>
+					</tr>
+					<tr>
+						<td class="info">メールアドレス</td>
+						<td class="text-left"><%= @client.email %></td>
+					</tr>
+					<tr>
+						<td class="info">職業</td>
+						<td class="text-left"><%= @client.work %></td>
+					</tr>
+					<tr>
+						<td class="info">ユーザー情報</td>
+						<td class="text-left"><%= @client.client_info %></td>
+					</tr>
+					<tr>
+						<td class="info">電話番号</td>
+						<td class="text-left"><%= @client.telephone_number %></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p>
+				レビュー履歴
+				<!--%= link_to " 一覧を見る", 〇〇_path, class: "glyphicon glyphicon-folder-open btn btn-info" %-->
+			</p>
+			<p>
+				コメント履歴
+				<!--%= link_to " 一覧を見る", 〇〇_path, class: "glyphicon glyphicon-folder-open btn btn-info" %-->
+			</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,6 @@
+ ja:
+    enums:
+      client:
+        work:
+          architecture: "建築関係"
+          others: "その他"
