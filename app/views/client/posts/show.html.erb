@@ -1,0 +1,57 @@
+<div class="container px-5 px-sm-0">
+ <h2>投稿情報</h2>
+ <div class="row">
+  <div class="col-md-4">
+   <!--<!%= image_tag @item.get_image, size: "200x200" %>-->
+   <!--%= image_tag(@item.get_image(200,200)) %-->
+  </div>
+  <div class="col-md-8">
+   <table class="table table-hover table-inverse">
+    <tr>
+     <td>タイトル</td>
+     <td><%= @post.title %>
+     <% if @post.favorited_by?(current_client) %>
+      <%= link_to client_post_favorites_path(@post.id),method: :delete do %>
+       ♥<%= @post.favorites.count %> いいね
+      <% end %>
+     <% else %>
+      <%= link_to client_post_favorites_path(@post.id) ,method: :post do %>
+       ♡<%= @post.favorites.count %> いいね
+      <% end %>
+     <% end %>
+      <!--%= render "../favorites/btn", post: @post %-->
+     </td>
+    </tr>
+    <tr>
+     <td>内容</td>
+     <td><%= @post.body %></td>
+    </tr>
+    <tr>
+     <td>投稿した会社名</td>
+     <td><%= @post.trader.name %></td>
+    </tr>
+   </table>
+   <div>
+    <p>コメント件数：<%= @post.comments.count %></p>
+    <% @post.comments.each do |comment| %>
+     <!--p><!--%= image_tag post_comment.client.get_profile_image(100,100) %></p-->
+     <p><%= comment.client.name %></p>
+     <p><%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %></p>
+     <p>
+      <% if comment.client == current_client %>
+       <%= link_to "編集", edit_client_post_comment_path(comment.post, comment) %>
+       <%= link_to "削除", client_post_comment_path(comment.post, comment), method: :delete %>
+      <% end %>
+     </p>
+    <% end %>
+   </div>
+   <div>
+    <%= form_with model: [@post, @comment], url: client_post_comments_path(@post), method: :post do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+      <%= f.submit "送信する" %>
+    <% end %>
+   </div>
+	 <%= link_to " 一覧へ", client_posts_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+  </div>
+ </div>
+</div>

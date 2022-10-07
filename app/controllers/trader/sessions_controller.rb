@@ -4,8 +4,8 @@ class Trader::SessionsController < Devise::SessionsController
   #ログイン処理が実行される前に、退会ステータス確認
   before_action :trader_state, only: [:create]
 
-  def after_sign_up_path_for(resource)
-    trader_user_path(resource)
+  def after_sign_in_path_for(resource)
+    root_path
   end
 
   def after_sign_out_path_for(resource)
@@ -16,7 +16,7 @@ class Trader::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = Trader.guest
     sign_in user
-    redirect_to trader_user_path(user) , notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to root_path , notice: 'ゲストユーザーとしてログインしました。'
   end
 
   # GET /resource/sign_in

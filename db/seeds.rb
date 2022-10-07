@@ -134,3 +134,32 @@ end
     body: "テスト内容#{n + 1}",
   )
 end
+
+6.times do |n|
+  Comment.create!(
+    client_id: 1,
+    post_id: "#{n + 1}",
+    comment: "顧客１テストコメント#{n + 1}",
+  )
+end
+6.times do |n|
+  Comment.create!(
+    client_id: 3,
+    post_id: "#{n + 1}",
+    comment: "顧客３テストコメント#{n + 1}",
+  )
+end
+6.times do |n|
+  Comment.create!(
+    client_id: 4,
+    post_id: "#{n + 1}",
+    comment: "顧客４テストコメント#{n + 1}",
+  )
+end
+6.times do |n|
+  Comment.create!(
+    client_id: 7,
+    post_id: "#{n + 1}",
+    comment: "退会済み会員のコメント#{n + 1}",
+  )
+end

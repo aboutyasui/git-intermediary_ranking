@@ -28,7 +28,6 @@ Rails.application.routes.draw do
 
   ##顧客関係
   namespace :client do
-    get 'comments/edit'
     #会員情報
     resources :users, only: [:show,:edit,:update] do
       collection do
@@ -42,6 +41,12 @@ Rails.application.routes.draw do
         #get 'show_posts'#投稿確認画面
       #end
     end
+
+    resources :posts, only: [:index,:show] do
+      resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :edit, :update, :destroy]
+    end
+
   end
 
   ##店側
@@ -58,7 +63,9 @@ Rails.application.routes.draw do
     #顧客情報
     resources :clients, only: [:index,:show]
     #投稿
-    resources :posts, only: [:new,:index,:create,:show,:edit,:update,:destroy]
+    resources :posts, only: [:new,:index,:create,:show,:edit,:update,:destroy] do
+      resources :comments, only: [:index]
+    end
   end
 
   namespace :admin do

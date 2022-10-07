@@ -10,6 +10,7 @@
     <tr>
      <td>タイトル</td>
      <td><%= @post.title %></td>
+     <td>いいね数：<%= @post.favorites.count %></td>
     </tr>
     <tr>
      <td>内容</td>
@@ -20,8 +21,18 @@
      <td><%= @post.trader.name %></td>
     </tr>
    </table>
-   <%= link_to "編集する", edit_trader_post_path(@post.id), class: "btn btn-sm btn-success" %>
-   <%= link_to "削除する", trader_post_path(@post.id), data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger",method: :delete  %>
+   <div>
+    <p>コメント件数：<%= @post.comments.count %></p>
+    <% @post.comments.each do |comment| %>
+     <!--p><!--%= image_tag post_comment.client.get_profile_image(100,100) %></p-->
+     <p><%= comment.client.name %></p>
+     <p><%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %></p>
+    <% end %>
+   </div>
+   <% if @post.trader == current_trader %>
+    <%= link_to "編集する", edit_trader_post_path(@post.id), class: "btn btn-sm btn-success" %>
+    <%= link_to "削除する", trader_post_path(@post.id), data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger",method: :delete  %>
+   <% end %>
 	 <%= link_to " 一覧へ", trader_posts_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
   </div>
  </div>
