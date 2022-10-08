@@ -24,7 +24,7 @@
                 <td><%= trader.name %></td>
                 <td><%= trader.email %></td>
                 <td><%= trader.telephone_number %></td>
-                <!--td><!%= trader.genre_id_i18n %></td-->
+                <td><%= trader.genre.name %></td>
                 <td>評価平均：<!--%= item.price.to_s(:delimited) %--><!--レビューの平均値を表示予定--></td>
                 <td>
                   <!--%= link_to "評価する",edit_book_path(@book), class:'btn btn-sm btn-success'%-->
@@ -95,7 +95,7 @@
                 <td><%= trader.name %></td>
                 <td><%= trader.email %></td>
                 <td><%= trader.telephone_number %></td>
-                <!--td><!%= trader.genre_id_i18n %></td-->
+                <td><%= trader.genre.name %></td>
                 <td>評価平均：<!--%= item.price.to_s(:delimited) %--><!--レビューの平均値を表示予定--></td>
               </tr>
               <% end %>

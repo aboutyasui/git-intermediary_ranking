@@ -70,6 +70,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '' => 'homes#top',as:'top'
+    resources :clients, only: [:index,:show,:edit,:update]
+    resources :traders, only: [:index,:show,:edit,:update] do
+      resources :posts, only: [:index,:show,:edit,:update,:destroy]
+    end  
   end
 
   #topページはapp/views/homes/topで設定

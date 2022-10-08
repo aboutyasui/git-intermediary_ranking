@@ -2,7 +2,7 @@
 
 class Client::SessionsController < Devise::SessionsController
   #before_action :configure_permitted_parameters, if: :devise_controller?
-   
+
   ##ログイン処理が実行される前に、退会ステータス確認
   before_action :client_state, only: [:create]
 
@@ -37,11 +37,11 @@ class Client::SessionsController < Devise::SessionsController
   # end
 
   protected
-  
+
   #def configure_permitted_parameters
    # devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
   #end
-  
+
   # 退会しているかを判断するメソッド
   def client_state
     #sigin_in時に入力されたemailからアカウントを１件取得
@@ -49,7 +49,7 @@ class Client::SessionsController < Devise::SessionsController
     ## アカウントを取得できなかった場合、このメソッドを終了する
     return if !@client
     ## 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
-    if @client.valid_password?(params[:client][:password]) && @client.is_deleted == true
+    if @client.valid_password?(params[:client][:password]) && @client.is_deleted == "withdrawal"
       ##trueだった場合、退会しているのでサインアップ画面に遷移する
       flash[:alert] = "このアカウントは退会済みです。"
       redirect_to new_client_registration_path

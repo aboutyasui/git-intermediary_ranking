@@ -4,3 +4,10 @@
         work:
           architecture: "建築関係"
           others: "その他"
+        is_deleted:
+          in_use: "有効"
+          withdrawal: "退会"
+      trader:
+        is_deleted:
+          in_use: "有効"
+          withdrawal: "退会"

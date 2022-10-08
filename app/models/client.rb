@@ -3,12 +3,13 @@ class Client < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :reviews
   has_many :favorites
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   enum work: { architecture: 0, others: 1 }
+  enum is_deleted: { "in_use": false, "withdrawal": true }
 
   def self.guest
     # ゲストログイン時に自動でデータが登録される

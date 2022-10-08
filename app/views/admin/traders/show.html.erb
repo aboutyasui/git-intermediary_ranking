@@ -4,7 +4,7 @@
 			<h2 class="head-line text-center title_h3"><%= @trader.name %>さん 詳細情報</h2>
 			<p>
 				登録情報
-				<%= link_to " 編集する", edit_trader_user_path(@trader.id), class: "btn btn-success" %>
+				<%= link_to " 編集する", edit_admin_trader_path(@trader.id), class: "btn btn-success" %>
 			</p>
 			<table class="table table-bordered table-condensed" >
 				<tbody>
@@ -28,12 +28,15 @@
 						<td class="info">電話番号</td>
 						<td class="text-left"><%= @trader.telephone_number %></td>
 					</tr>
+					<tr>
+						<td class="info">ステータス</td>
+						<td class="text-left"><%= @trader.is_deleted_i18n %></td>
+					</tr>
 				</tbody>
 			</table>
 			<p>
 				投稿履歴
-				<%= link_to " 一覧を見る", trader_posts_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
-			  <%= link_to "新規投稿",new_trader_post_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+				<%= link_to " 一覧を見る", admin_trader_posts_path(@trader.id), class: "glyphicon glyphicon-folder-open btn btn-info" %>
 			</p>
 		</div>
 	</div>

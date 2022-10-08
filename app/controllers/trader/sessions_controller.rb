@@ -42,7 +42,7 @@ class Trader::SessionsController < Devise::SessionsController
     ## アカウントを取得できなかった場合、このメソッドを終了する
     return if !@trader
     ## 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
-    if @trader.valid_password?(params[:trader][:password]) && @trader.is_deleted == true
+    if @trader.valid_password?(params[:trader][:password]) && @trader.is_deleted == "withdrawal"
       ##trueだった場合、退会しているのでサインアップ画面に遷移する
       flash[:alert] = "このアカウントは退会済みです。"
       redirect_to new_trader_registration_path

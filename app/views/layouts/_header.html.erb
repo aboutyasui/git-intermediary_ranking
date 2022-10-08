@@ -19,8 +19,8 @@
           <!--li class="mr-3"><!%= link_to "顧客一覧", trader_clients_path, class: "btn btn-outline-secondary" %></li-->
           <li class="mb-1"><%= link_to "ログアウト", destroy_trader_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
         <% elsif admin_signed_in? %>
-          <!--li class="mr-3"><!%= link_to "業者一覧", admin_traders_path, class: "btn btn-outline-secondary" %></li-->
-          <!--li class="mr-3"><!%= link_to "顧客一覧", admin_clients_path, class: "btn btn-outline-secondary" %></li-->
+          <li class="mr-3"><%= link_to "業者一覧", admin_traders_path, class: "btn btn-outline-secondary" %></li>
+          <li class="mr-3"><%= link_to "顧客一覧", admin_clients_path, class: "btn btn-outline-secondary" %></li>
           <!--<li><!%= #link_to "ジャンル一覧", _path %></li>-->
           <li class="mb-1"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
         <% else %>
