@@ -2,10 +2,10 @@
     <div class="row">
         <h4 class="mb-2">新規投稿</h4>
         <%= form_with model: @post, url: trader_posts_path, local:true, method: :post do |f| %>
-            <!--div class="form-group">
-                <!%= f.label :イメージ画像 %>
-                <!%= f.file_field :image, accept: "image/*" %>
-            </div-->
+            <div class="form-group">
+                <%= f.label :イメージ画像 %>
+                <%= f.file_field :image, accept: "image/*" %>
+            </div>
             <div class="form-group">
                 <%= f.label :タイトル %>
                 <%= f.text_field :title %>

@@ -9,7 +9,7 @@ class Trader::SessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource)
-    root_path
+    new_trader_registration_path
   end
 
   #ゲストログイン用の処理

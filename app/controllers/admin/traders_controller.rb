@@ -7,6 +7,7 @@ class Admin::TradersController < ApplicationController
   end
 
   def show
+    @posts = Post.where(trader_id: @trader.id).page(params[:page]).per(5)
   end
 
   def edit
@@ -25,7 +26,7 @@ class Admin::TradersController < ApplicationController
   private
 
   def trader_params
-    params.require(:trader).permit(:email, :name, :trader_info, :telephone_number, :genre_id, :is_deleted)
+    params.require(:trader).permit(:email, :name, :trader_info,:profile_image, :telephone_number, :genre_id, :is_deleted)
   end
 
   def find_params

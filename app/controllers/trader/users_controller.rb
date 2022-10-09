@@ -1,5 +1,5 @@
 class Trader::UsersController < ApplicationController
-  before_action :authenticate_trader!#client側でログイン済みのユーザー限定にするため
+  before_action :authenticate_trader!#traider側でログイン済みのユーザー限定にするため
   before_action :get_params,only: [:show,:edit,:update]
 
   def index
@@ -8,6 +8,8 @@ class Trader::UsersController < ApplicationController
 
   def show
     #@review = Review.new
+    @posts = Post.where(trader_id: @trader.id).page(params[:page]).per(5)
+    #Whereを使うことで特定の業者の投稿データを取得できる
   end
 
   def edit
@@ -22,7 +24,7 @@ class Trader::UsersController < ApplicationController
   def update
     if @trader.update(user_params)
       flash[:notice] ="You have updated user successfully."
-      redirect_to client_user_path(@trader.id)
+      redirect_to trader_user_path(@trader.id)
     else
       render :edit and return
       #and return = renderの複数使用によるエラーを回避するためのコマンドみたいなもの
@@ -44,7 +46,7 @@ class Trader::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:trader).permit(:name, :email, :trader_info, :telephone_number, :genre_id)
+    params.require(:trader).permit(:name, :email, :trader_info,:profile_image, :telephone_number, :genre_id)
     #params.require(モデル名).permit(キー1, キー2, ...)
   end
 

@@ -9,10 +9,11 @@ class Trader::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.trader_id = current_trader.id
     if @post.save
-      flash[:notice] ="You have created post successfully."
+      flash[:notice] ="投稿に成功しました."
       #redirect_to trader_user_path(@post.trader_id)
       redirect_to trader_post_path(@post.id)
     else
+      flash[:notice] ="投稿に失敗しました"
       redirect_to trader_user_path(current_trader) #投稿失敗時、マイページに飛ぶ
     end
   end
@@ -44,7 +45,7 @@ class Trader::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :image, :body)
   end
 
   def correct_user

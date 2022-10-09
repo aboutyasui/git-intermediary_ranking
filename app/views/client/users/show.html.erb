@@ -1,6 +1,9 @@
 <div class="container">
-	<div class="row">
-		<div class="col-xs-offset-1 col-xs-8">
+	<div class="row d-flex">
+		<div class=col>
+		  <%= image_tag(@client.get_profile_image(100,100)) %>
+		</div>
+		<div class="col">
 			<h2 class="head-line text-center title_h3"><%= @client.name %>さん 詳細情報</h2>
 			<p>
 				登録情報
@@ -37,8 +40,27 @@
 				<!--%= link_to " 一覧を見る", 〇〇_path, class: "glyphicon glyphicon-folder-open btn btn-info" %-->
 			</p>
 			<p>
-				コメント履歴
-				<!--%= link_to " 一覧を見る", 〇〇_path, class: "glyphicon glyphicon-folder-open btn btn-info" %-->
+				コメント履歴:<%= @comments.count%>件のコメント履歴があります
+				<div class=col>
+					<table class="table table-bordered table-condensed" >
+        		<thead>
+        			<tr>
+        				<th colspan="2">タイトル</th>
+        				<th>評価関係</th>
+        			</tr>
+        		</thead>
+        		<tbody>
+							<% @comments.each do |comment| %>
+							  <tr>
+								  <td><%= link_to comment.post.title,trader_post_path(comment.post.id) %></td>
+								  <td><%= link_to comment.post.trader.name,trader_user_path(comment.post.trader.id) %></td>
+								  <td>いいね数：<%= comment.post.favorites.count%></td>
+							  </tr>
+							<% end %>
+					  </tbody>
+					</table>
+					<%= paginate @comments %>
+				</div>
 			</p>
 		</div>
 	</div>

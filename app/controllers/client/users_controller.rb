@@ -3,6 +3,8 @@ class Client::UsersController < ApplicationController
   before_action :get_params,only: [:show,:edit,:update]
 
   def show
+    @comments = Comment.where(client_id: @client.id).page(params[:page]).per(5)
+    #Whereを使うことで特定の業者の投稿データを取得できる
   end
 
   def edit
@@ -39,7 +41,7 @@ class Client::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:client).permit(:name, :email, :client_info, :telephone_number, :work)
+    params.require(:client).permit(:name, :email, :client_info,:profile_image, :telephone_number, :work)
     #params.require(モデル名).permit(キー1, キー2, ...)
   end
 

@@ -12,13 +12,17 @@
 	  <tbody>
 			<% @posts.each do |post| %>
 				<tr>
-					<td><!--%= image_tag book.user.get_profile_image(50,50) %--></td>
+					<td>
+						<%= link_to trader_post_path(post.id) do %>
+						  <%= image_tag post.get_image, size: "80x80" %>
+					  <% end %>
+					</td>
 					<td><%= link_to post.title,trader_post_path(post.id) %></td>
 					<td><%= post.body %></td>
 					<td>コメント件数：<%= post.comments.count %></td>
 					<td>いいね数：<%= post.favorites.count %></td>
   				<td>
-  					<%= post.trader.name%>
+  					<%= link_to post.trader.name,trader_user_path(post.trader.id) %>
   					<% if post.trader == current_trader %>
     					<%= link_to "編集する", edit_trader_post_path(post.id), class: "btn btn-sm btn-success" %>
               <%= link_to "削除する", trader_post_path(post.id), data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger",method: :delete  %>

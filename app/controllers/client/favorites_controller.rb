@@ -6,7 +6,7 @@ class Client::FavoritesController < ApplicationController
     favorite = current_client.favorites.new(client_id: client.id)
     favorite = current_client.favorites.new(post_id: post.id)
     favorite.save
-    redirect_to client_post_path(post.id)
+    redirect_to request.referer
   end
 
   def destroy
@@ -15,7 +15,7 @@ class Client::FavoritesController < ApplicationController
     favorite = current_client.favorites.find_by(client_id: client.id)
     favorite = current_client.favorites.find_by(post_id: post.id)
     favorite.destroy
-    redirect_to client_post_path(post.id)
+    redirect_to request.referer
   end
 
 end

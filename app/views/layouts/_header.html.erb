@@ -10,17 +10,21 @@
         <% if client_signed_in? %>
           <li class="mr-3">ようこそ、<%= current_client.name %>さん！</li>
           <li class="mr-3"><%= link_to "マイページ", client_user_path(current_client), class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "投稿一覧", client_posts_path, class: "btn btn-outline-secondary" %></li>
+          <li class="mr-3"><%= link_to "業者一覧", root_path, class: "btn btn-outline-secondary" %></li>
+          <li class="mr-3"><%= link_to "投稿一覧", client_homes_path, class: "btn btn-outline-secondary" %></li>
           <!--li class="mr-3"><!%= link_to "ジャンル", _path, class: "btn btn-outline-secondary" %></li-->
           <li class="mb-1"><%= link_to "ログアウト", destroy_client_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
         <% elsif trader_signed_in? %>
           <li class="mr-3">ようこそ、<%= current_trader.name %>さん！</li>
           <li class="mr-3"><%= link_to "マイページ", trader_user_path(current_trader), class: "btn btn-outline-secondary" %></li>
-          <!--li class="mr-3"><!%= link_to "顧客一覧", trader_clients_path, class: "btn btn-outline-secondary" %></li-->
+          <li class="mr-3"><%= link_to "顧客一覧", root_path, class: "btn btn-outline-secondary" %></li>
+          <li class="mr-3"><%= link_to " 投稿一覧", trader_posts_path, class: "btn btn-outline-secondary" %></li>
+			    <li class="mr-3"><%= link_to "新規投稿",new_trader_post_path, class: "btn btn-outline-secondary" %></li>
           <li class="mb-1"><%= link_to "ログアウト", destroy_trader_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
         <% elsif admin_signed_in? %>
           <li class="mr-3"><%= link_to "業者一覧", admin_traders_path, class: "btn btn-outline-secondary" %></li>
           <li class="mr-3"><%= link_to "顧客一覧", admin_clients_path, class: "btn btn-outline-secondary" %></li>
+          <li class="mr-3"><%= link_to "投稿一覧", admin_top_path, class: "btn btn-outline-secondary" %></li>
           <!--<li><!%= #link_to "ジャンル一覧", _path %></li>-->
           <li class="mb-1"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
         <% else %>

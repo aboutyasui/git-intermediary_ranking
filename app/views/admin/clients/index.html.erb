@@ -1,26 +1,31 @@
 <div class="container px-5 px-sm-0">
   <div class="row mt-3">
-    <div class="col-md-9">
+    <div class="col">
       <strong style="font-size:25px;">顧客一覧</strong>
       <table class='table table-hover table-inverse'>
         <thead>
           <tr>
+            <th></th>
             <th>氏名</th>
             <th>メールアドレス</th>
             <th>連絡先</th>
             <th>職業</th>
-            <th colspan="2">ステータス</th>
+            <th>ステータス</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <% @clients.each do |client| %>
             <tr>
+              <td>
+              	<%= image_tag(client.get_profile_image(100,100)) %>
+              </td>
               <td><%= link_to client.name,admin_client_path(client.id) %></td>
               <td><%= client.email %></td>
               <td><%= client.telephone_number %></td>
               <td><%= client.work_i18n %></td>
               <td><%= client.is_deleted_i18n %></td>
-              <td><%= link_to "編集する",edit_admin_client_path(client.id)%></td>
+              <td><%= link_to "編集する",edit_admin_client_path(client.id), class: "btn btn-success"%></td>
             </tr>
           <% end %>
         </tbody>

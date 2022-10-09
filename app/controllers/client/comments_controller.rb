@@ -6,7 +6,7 @@ class Client::CommentsController < ApplicationController
     comment = current_client.comments.new(comment_params)
     comment.post_id = post.id
     comment.save
-    redirect_to client_post_path(post.id)
+    redirect_to client_trader_post_path(post.trader.id,post.id)
   end
 
   def edit
@@ -14,7 +14,7 @@ class Client::CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to client_post_path(@comment.post_id), notice: "You have updated book successfully."
+      redirect_to client_trader_post_path(@post.trader.id,@comment.post_id), notice: "You have updated book successfully."
     else
       render :edit#編集ページに戻る
     end
@@ -22,7 +22,7 @@ class Client::CommentsController < ApplicationController
 
   def destroy
     Comment.find(params[:id]).destroy
-    redirect_to client_post_path(@post.id)
+    redirect_to client_trader_post_path(@comment.post.trader.id,@comment.post_id)
   end
 
   private
@@ -30,12 +30,12 @@ class Client::CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:client_id,:post_id,:comment)
   end
-  
+
   def correct_user
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
     @comment = Comment.find(params[:id])
     @client = @comment.client
-    redirect_to(client_post_path(@post.id)) unless @client == current_client
+    redirect_to(client_trader_post_path(@comment.post.trader.id,@comment.post.id)) unless @client == current_client
   end
-  
+
 end

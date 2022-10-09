@@ -25,7 +25,7 @@ class Admin::ClientsController < ApplicationController
   private
 
   def client_params
-    params.require(:client).permit(:email, :name, :client_info, :telephone_number, :work, :is_deleted)
+    params.require(:client).permit(:email, :name, :client_info,:profile_image,:telephone_number, :work, :is_deleted)
   end
 
   def find_params

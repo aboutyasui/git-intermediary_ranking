@@ -1,12 +1,12 @@
 <% if post.favorited_by?(current_client) %>
   <p>
-    <%= link_to client_post_favorites_path(post.id), locle :true ,method: :delete do %>
+    <%= link_to client_trader_post_favorites_path(post.trader.id,post.id), locle :true ,method: :delete do %>
       ♥<%= post.favorites.count %> いいね
     <% end %>
   </p>
 <% else %>
   <p>
-    <%= link_to client_post_favorites_path(post.id),locle :true ,method: :post do %>
+    <%= link_to client_trader_post_favorites_path(post.trader.id,post.id),locle :true ,method: :post do %>
       ♡<%= post.favorites.count %> いいね
     <% end %>
   </p>

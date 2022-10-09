@@ -36,17 +36,16 @@ Rails.application.routes.draw do
       end
     end
     #業者情報
-    resources :traders, only: [:index,:show] do
+    resources :traders, only: [:show] do
       #collection do
         #get 'show_posts'#投稿確認画面
       #end
+      resources :posts, only: [:show] do
+        resource :favorites, only: [:create, :destroy]
+        resources :comments, only: [:create, :edit, :update, :destroy]
+      end
     end
-
-    resources :posts, only: [:index,:show] do
-      resource :favorites, only: [:create, :destroy]
-      resources :comments, only: [:create, :edit, :update, :destroy]
-    end
-
+    get 'homes'=>'homes#index'
   end
 
   ##店側
@@ -61,7 +60,7 @@ Rails.application.routes.draw do
       resources :reviews, only: [:new,:create]
     end
     #顧客情報
-    resources :clients, only: [:index,:show]
+    resources :clients, only: [:show]
     #投稿
     resources :posts, only: [:new,:index,:create,:show,:edit,:update,:destroy] do
       resources :comments, only: [:index]
@@ -70,10 +69,14 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '' => 'homes#top',as:'top'
-    resources :clients, only: [:index,:show,:edit,:update]
+    resources :clients, only: [:index,:show,:edit,:update] do
+       resources :posts, only: [:show]do
+         resources :comments, only: [:edit,:update,:destroy]
+      end
+    end
     resources :traders, only: [:index,:show,:edit,:update] do
-      resources :posts, only: [:index,:show,:edit,:update,:destroy]
-    end  
+      resources :posts, only: [:show,:edit,:update,:destroy]
+    end
   end
 
   #topページはapp/views/homes/topで設定
