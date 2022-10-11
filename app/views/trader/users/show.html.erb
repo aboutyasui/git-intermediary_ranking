@@ -4,10 +4,16 @@
 		  <%= image_tag(@trader.get_profile_image(200,200)) %>
 		</div>
 		<div class="col">
-			<h2 class="head-line text-center title_h3"><%= @trader.name %>さん 詳細情報</h2>
+			<h2 class="head-line text-center title_h3">
+				<%= @trader.name %>さん 詳細情報
+				評価<%= @average %>
+			</h2>
 			<p>
 				登録情報
-				<%= link_to " 編集する", edit_trader_user_path(@trader.id), class: "btn btn-success" %>
+				<%= link_to " 口コミ状況", trader_user_homes_path(@trader.id), class: "btn btn-success" %>
+				<% if @trader.id == current_trader.id %>
+					<%= link_to " 編集する", edit_trader_user_path(@trader.id), class: "btn btn-success" %>
+				<% end %>
 			</p>
 			<table class="table table-bordered table-condensed" >
 				<tbody>

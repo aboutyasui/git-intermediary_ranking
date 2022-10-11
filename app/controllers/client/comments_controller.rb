@@ -32,7 +32,6 @@ class Client::CommentsController < ApplicationController
   end
 
   def correct_user
-    #@post = Post.find(params[:id])
     @comment = Comment.find(params[:id])
     @client = @comment.client
     redirect_to(client_trader_post_path(@comment.post.trader.id,@comment.post.id)) unless @client == current_client

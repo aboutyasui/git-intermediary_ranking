@@ -29,6 +29,7 @@
                 <td><%= trader.genre.name %></td>
                 <td>評価平均：<%= @average %></td>
                 <td>
+                  <%= link_to " 口コミ状況", client_trader_review_path(trader.id,trader.reviews), class: "btn btn-success" %>
                   <%= link_to "評価する",new_client_trader_review_path(trader.id), class:"btn btn-warning" %>
                 </td>
               </tr>
@@ -55,7 +56,7 @@
                 <th>メールアドレス</th>
                 <th>連絡先</th>
                 <th>職業</th>
-                <th>評価結果</th>
+                <th>評価状況</th>
               </tr>
             </thead>
             <tbody>
@@ -66,7 +67,7 @@
                 <td><%= client.email %></td>
                 <td><%= client.telephone_number %></td>
                 <td><%= client.work_i18n %></td>
-                <td>評価結果：☆<!--%= item.price.to_s(:delimited) %--><!--レビューの平均値を表示予定--></td>
+                <td>評価結果：<!--レビューの平均値を表示予定--></td>
               </tr>
               <% end %>
             </tbody>

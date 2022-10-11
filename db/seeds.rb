@@ -19,6 +19,9 @@ Genre.create!(
     },
     {
       name: '衛星',
+    },
+    {
+      name: 'その他',
     }
   ]
 )

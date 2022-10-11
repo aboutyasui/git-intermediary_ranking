@@ -3,11 +3,11 @@
 		<div class="col">
 			<h2 class="head-line text-center title_h3">
 				<%= @trader.name %>さん 詳細情報
-				<%= @average %>
+				評価<%= @average %>
 			</h2>
 			<p>
 				登録情報
-				<%= link_to " 編集する", edit_trader_user_path(@trader.id), class: "btn btn-success" %>
+				<%= link_to " 口コミ状況", client_trader_review_path(@trader.id), class: "btn btn-success" %>
 				<%= link_to " レビューする", new_client_trader_review_path(@trader.id), class: "btn btn-warning" %>
 			</p>
 			<table class="table table-bordered table-condensed" >
@@ -67,15 +67,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-  //$('.average-review-rating').raty({
-    //readOnly: true,
-    //starOn: "</%= asset_path('star-on.png') %>",
-    //starOff: "</%= asset_path('star-off.png') %>",
-    //starHalf: "</%= asset_path('star-half.png') %>",
-    //score: function() {
-      //return $(this).attr('data-score')
-    //}
-  //});
-</script>

@@ -21,9 +21,8 @@
   <!--コメント-->
   <div class="form-group">
     <%= f.label :"コメント" %>
-    <%= f.text_area :review_comment, class: 'form-control book_body' %>
+    <%= f.text_area :review_comment,placeholder: "コメントをここに", class: 'w-100 comment-textarea' %>
   </div>
-  <!--%= f.hidden_field :trader_id, value: @trader.id %-->
   <div class="form-group">
     <%= f.submit '保存', class: 'btn btn-success' %>
   </div>
