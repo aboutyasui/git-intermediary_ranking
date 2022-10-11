@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       #collection do
         #get 'show_posts'#投稿確認画面
       #end
+      resources :reviews, only: [:new,:create,:show,:edit,:update,:destroy]
       resources :posts, only: [:show] do
         resource :favorites, only: [:create, :destroy]
         resources :comments, only: [:create, :edit, :update, :destroy]

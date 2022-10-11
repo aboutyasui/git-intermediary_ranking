@@ -2,9 +2,9 @@ class Trader < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :reviews
   belongs_to :genre, optional: true#optional: trueを設定しておくと、外部キーがnilであってもDBに保存できます。
-  
+
   has_one_attached :profile_image
-  
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/20200502_noimage.jpg')

@@ -7,7 +7,7 @@ class Trader::UsersController < ApplicationController
   end
 
   def show
-    #@review = Review.new
+    @review = @trader.review
     @posts = Post.where(trader_id: @trader.id).page(params[:page]).per(5)
     #Whereを使うことで特定の業者の投稿データを取得できる
   end
