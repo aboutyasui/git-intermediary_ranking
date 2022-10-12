@@ -3,9 +3,9 @@ class Client < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :reviews
   has_many :favorites
-  
+
   has_one_attached :profile_image
-  
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
@@ -27,6 +27,15 @@ class Client < ApplicationRecord
       client.name = "ゲスト顧客"
       client.password = SecureRandom.urlsafe_base64
       client.telephone_number = "02699990909"
+    end
+  end
+
+  def review_count(client)
+    ##特定のclientが評価した回数を算出
+    if client.reviews.count >= 1
+      client.reviews.count
+    else
+      0.0
     end
   end
 

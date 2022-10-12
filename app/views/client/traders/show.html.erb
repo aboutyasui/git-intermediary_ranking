@@ -3,7 +3,7 @@
 		<div class="col">
 			<h2 class="head-line text-center title_h3">
 				<%= @trader.name %>さん 詳細情報
-				評価<%= @average %>
+				評価<%= @trader.review_average(@trader) %>
 			</h2>
 			<p>
 				登録情報
