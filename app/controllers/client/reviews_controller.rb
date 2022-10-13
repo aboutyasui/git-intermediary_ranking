@@ -8,7 +8,6 @@ class Client::ReviewsController < ApplicationController
     #ログイン中の顧客(current_client)の紐づくレビューデータ(current_client.reviews)に業者情報(@trader.id)を入れる(find_by)
     if @review.present?
       redirect_to edit_client_trader_review_path(@trader.id,@review.id)
-      #render :edit
     else
       @review = Review.new
     end
@@ -20,7 +19,6 @@ class Client::ReviewsController < ApplicationController
     if @review.present? #さっき取得した情報の中にnil(空の情報)がないか確認
       #nilがない場合、editアクションへ
       redirect_to edit_client_trader_review_path(@trader.id,@review.id)
-      #render :edit
     else
       #nilがある場合、このまま新規登録処理へ
         @review = Review.new(review_params)
