@@ -75,11 +75,13 @@ Rails.application.routes.draw do
   namespace :admin do
     get '' => 'homes#top',as:'top'
     resources :clients, only: [:index,:show,:edit,:update] do
-       resources :posts, only: [:show]do
-         resources :comments, only: [:edit,:update,:destroy]
+      resources :trader_reviews, only: [:show,:edit,:update,:destroy]
+      resources :posts, only: [:show]do
+        resources :comments, only: [:edit,:update,:destroy]
       end
     end
     resources :traders, only: [:index,:show,:edit,:update] do
+      resources :trader_reviews, only: [:index]
       resources :posts, only: [:show,:edit,:update,:destroy]
     end
   end

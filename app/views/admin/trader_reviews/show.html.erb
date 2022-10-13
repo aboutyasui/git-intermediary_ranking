@@ -1,0 +1,30 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h3 class="head-line text-center title_h3">
+				<%= @client.name %>さん レビュー情報
+			</h3>
+			<table class="table table-bordered table-condensed" >
+			  <thead>
+			    <tr>
+			      <th>会社名</th>
+			      <th>点数</th>
+			      <th>コメント</th>
+			      <th colspan="2"></th>
+			    </tr>
+			  </thead>
+				<tbody>
+				  <% @reviews.each do |review| %>
+					  <tr>
+					    <td><%= link_to review.trader.name,admin_trader_trader_reviews_path(review.trader.id) %></td>
+					    <td><%= review.star %></td>
+					    <td><%= review.review_comment %></td>
+					    <td><%= link_to "編集ページへ",edit_admin_client_trader_review_path(@client.id,review.id) %></td>
+					    <td><%= link_to "削除",admin_client_trader_review_path(@client.id,review.id),method: :delete %></td>
+					  </tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

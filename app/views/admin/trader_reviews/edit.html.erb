@@ -1,0 +1,32 @@
+<!--コメント入力Form-->
+<%= form_with(model:[@client, @review],url: admin_client_trader_review_path(@client.id,@review.id), method: :patch, local: true) do |f| %>
+
+  <!--評価-->
+  <div class="form-group row" id="star">
+    <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :star, id: :review_star %>
+  </div>
+
+  <!-- 評価javascript -->
+  <script>
+  $('#star').empty(); //ブラウザバックで星が増え続ける不具合防止。
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    scoreName: 'review[star]',
+    half: false,
+  });
+  </script>
+
+  <!--コメント-->
+  <div class="form-group">
+    <%= f.label :"コメント" %>
+    <%= f.text_area :review_comment, rows:'5',placeholder: "コメントをここに", class: "w-100 comment-textarea" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit '保存', class: 'btn btn-success' %>
+  </div>
+
+<% end %>
