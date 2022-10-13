@@ -4,7 +4,7 @@ class Client::TradersController < ApplicationController
   def show
     @trader = Trader.find(params[:id])
     @posts = Post.where(trader_id: @trader.id).page(params[:page]).per(5)
-    #Whereを使うことで特定の業者の投稿データを取得できる
+    #Whereを使うことで特定の業者(URL上に表示されているtrader_id)の投稿データを取得できる
   end
 
 end

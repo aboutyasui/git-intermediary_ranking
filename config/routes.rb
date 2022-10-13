@@ -34,12 +34,14 @@ Rails.application.routes.draw do
         get 'unsubscribe'#退会確認画面
         patch 'withdraw'#退会処理更新
       end
+       resources :user_reviews, only: [:index]#特定の顧客のレビュー一覧
     end
     #業者情報
     resources :traders, only: [:show] do
       #collection do
         #get 'show_posts'#投稿確認画面
       #end
+      resources :reviews, only: [:new,:create,:show,:edit,:update,:destroy]#特定の店のレビュー一覧 + @
       resources :posts, only: [:show] do
         resource :favorites, only: [:create, :destroy]
         resources :comments, only: [:create, :edit, :update, :destroy]
@@ -56,11 +58,14 @@ Rails.application.routes.draw do
         get 'unsubscribe'#退会確認画面
         patch 'withdraw'#退会処理更新
       end
-      #レビュー関係
-      resources :reviews, only: [:new,:create]
+      resources :homes, only: [:index]#特定の店のレビュー一覧
     end
     #顧客情報
-    resources :clients, only: [:show]
+    resources :clients, only: [:show] do
+    #レビュー関係
+      resources :reviews, only: [:show]#特定の顧客のレビュー一覧
+    end
+
     #投稿
     resources :posts, only: [:new,:index,:create,:show,:edit,:update,:destroy] do
       resources :comments, only: [:index]
@@ -70,11 +75,13 @@ Rails.application.routes.draw do
   namespace :admin do
     get '' => 'homes#top',as:'top'
     resources :clients, only: [:index,:show,:edit,:update] do
-       resources :posts, only: [:show]do
-         resources :comments, only: [:edit,:update,:destroy]
+      resources :trader_reviews, only: [:show,:edit,:update,:destroy]
+      resources :posts, only: [:show]do
+        resources :comments, only: [:edit,:update,:destroy]
       end
     end
     resources :traders, only: [:index,:show,:edit,:update] do
+      resources :trader_reviews, only: [:index]
       resources :posts, only: [:show,:edit,:update,:destroy]
     end
   end

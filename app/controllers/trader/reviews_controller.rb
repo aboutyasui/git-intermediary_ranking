@@ -1,8 +1,7 @@
 class Trader::ReviewsController < ApplicationController
-  def new
-    #@review = Review.new
-  end
 
-  def create
+  def show
+    @client = Client.find(params[:client_id])
+    @reviews = Review.where(client_id: @client.id)
   end
 end
