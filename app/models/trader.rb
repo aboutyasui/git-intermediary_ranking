@@ -29,7 +29,8 @@ class Trader < ApplicationRecord
       trader.telephone_number = "52789980949"
     end
   end
-
+  
+  ##評価点の平均値
   def review_average(trader)
     if trader.reviews.count >= 1
       reviews=Review.where(trader_id: trader.id).pluck(:star)#starカラムに保存されている評価点数（文字列型）を取得
