@@ -38,5 +38,20 @@ class Client < ApplicationRecord
       0.0
     end
   end
+  
+  ##検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @client = Client.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @client = Client.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @client = Client.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @client = Client.where("name LIKE?","%#{word}%")
+    else
+      @client = Client.all
+    end
+  end
 
 end

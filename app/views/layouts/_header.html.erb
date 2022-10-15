@@ -37,10 +37,7 @@
           <li class="mb-1"><%= link_to "ログイン（業者）", new_trader_session_path, class: "btn btn-outline-secondary" %></li>
         <% end %>
       </ul>
-      <form class="form-inline my-2 ml-auto">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+        <%= render 'searches/search' %>
     </div>
   </div>
 </nav>

@@ -1,0 +1,48 @@
+<h2>検索結果</h2>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがclientの時 -->
+  <% if @range == "Client" %>
+    <tbody>
+      <% @clients.each do |client| %>
+        <tr>
+          <td><%= client.name %></td>
+          <td><%= client.work %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% elsif @range == "Trader" %>
+    <!--検索対象モデルがTraderの時 -->
+    <tbody>
+      <% @traders.each do |trader| %>
+        <tr>
+          <td><%= trader.name %></td>
+          <td><%= trader.genre.name %></td>
+          <td>評価点：<%= trader.review_average(trader) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% elsif @range == "Post" %>
+    <!--検索対象モデルがPostの時 -->
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.title %></td>
+          <td><%= post.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <!--検索対象モデルがReviewの時 -->
+    <tbody>
+      <% @reviews.each do |review| %>
+        <tr>
+          <td><%= review.star %></td>
+          <td><%= review.review_comment %></td>
+          <td><%= review.trader.name %></td>
+          <td><%= review.client.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

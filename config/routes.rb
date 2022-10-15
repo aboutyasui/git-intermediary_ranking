@@ -90,4 +90,8 @@ Rails.application.routes.draw do
   root to:"homes#top"
   #aboutページはapp/views/homes/aboutで設定
   get 'about'=>'homes#about' ,as:'about'
+  
+  #検索機能用
+  post "search" => "searches#index"
+
 end

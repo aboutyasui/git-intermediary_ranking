@@ -41,5 +41,20 @@ class Trader < ApplicationRecord
       0.0
     end
   end
+  
+  ##検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @trader = Trader.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @trader = Trader.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @trader = Trader.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @trader = Trader.where("name LIKE?","%#{word}%")
+    else
+      @trader = Trader.all
+    end
+  end
 
 end
