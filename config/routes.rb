@@ -48,6 +48,7 @@ Rails.application.routes.draw do
       end
     end
     get 'homes'=>'homes#index'
+    resources :genres, only: [:show]#ジャンル機能用
   end
 
   ##店側
@@ -62,7 +63,6 @@ Rails.application.routes.draw do
     end
     #顧客情報
     resources :clients, only: [:show] do
-    #レビュー関係
       resources :reviews, only: [:show]#特定の顧客のレビュー一覧
     end
 
@@ -77,20 +77,20 @@ Rails.application.routes.draw do
     resources :clients, only: [:index,:show,:edit,:update] do
       resources :trader_reviews, only: [:show,:edit,:update,:destroy]
       resources :posts, only: [:show]do
-        resources :comments, only: [:edit,:update,:destroy]
+        resources :comments, only: [:index,:edit,:update,:destroy]
       end
     end
-    resources :traders, only: [:index,:show,:edit,:update] do
+    resources :traders, only: [:show,:edit,:update] do
       resources :trader_reviews, only: [:index]
       resources :posts, only: [:show,:edit,:update,:destroy]
     end
+    resources :genres, only: [:index,:show, :create, :edit, :update]
   end
 
   #topページはapp/views/homes/topで設定
   root to:"homes#top"
   #aboutページはapp/views/homes/aboutで設定
   get 'about'=>'homes#about' ,as:'about'
-  
   #検索機能用
   post "search" => "searches#index"
 

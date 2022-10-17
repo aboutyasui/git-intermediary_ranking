@@ -6,8 +6,19 @@
     <tbody>
       <% @clients.each do |client| %>
         <tr>
-          <td><%= client.name %></td>
-          <td><%= client.work %></td>
+          <% if client_signed_in? %>
+            <td><%= link_to client.name,client_user_path(client.id) %></td>
+            <td><%= client.work %></td>
+          <% elsif trader_signed_in? %>
+            <td><%= link_to client.name,trader_client_path(client.id) %></td>
+            <td><%= client.work %></td>
+          <% elsif admin_signed_in? %>
+            <td><%= link_to client.name,admin_client_path(client.id) %></td>
+            <td><%= client.work %></td>
+          <% else %>
+            <td><%= client.name %></td>
+            <td><%= client.work %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
@@ -16,9 +27,23 @@
     <tbody>
       <% @traders.each do |trader| %>
         <tr>
-          <td><%= trader.name %></td>
-          <td><%= trader.genre.name %></td>
-          <td>評価点：<%= trader.review_average(trader) %></td>
+          <% if client_signed_in? %>
+            <td><%= link_to trader.name,clietn_trader_path(trader.id) %></td>
+            <td><%= trader.genre.name %></td>
+            <td>評価点：<%= trader.review_average(trader) %></td>
+          <% elsif trader_signed_in? %>
+            <td><%= link_to trader.name,trader_user_path(trader.id) %></td>
+            <td><%= trader.genre.name %></td>
+            <td>評価点：<%= trader.review_average(trader) %></td>
+          <% elsif admin_signed_in? %>
+            <td><%= link_to trader.name,admin_trader_path(trader.id)  %></td>
+            <td><%= trader.genre.name %></td>
+            <td>評価点：<%= trader.review_average(trader) %></td>
+          <% else %>
+            <td><%= trader.name %></td>
+            <td><%= trader.genre.name %></td>
+            <td>評価点：<%= trader.review_average(trader) %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
@@ -27,8 +52,19 @@
     <tbody>
       <% @posts.each do |post| %>
         <tr>
-          <td><%= post.title %></td>
-          <td><%= post.body %></td>
+          <% if client_signed_in? %>
+            <td><%= link_to post.title,client_trader_post_path(post.trader.id,post.id) %></td>
+            <td><%= post.body %></td>
+          <% elsif trader_signed_in? %>
+            <td><%= link_to post.title,trader_post_path(post.id) %></td>
+            <td><%= post.body %></td>
+          <% elsif admin_signed_in? %>
+            <td><%= link_to post.title,admin_trader_post_path(post.trader.id,post.id) %></td>
+            <td><%= post.body %></td>
+          <% else %>
+            <td><%= post.title %></td>
+            <td><%= post.body %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
@@ -37,10 +73,27 @@
     <tbody>
       <% @reviews.each do |review| %>
         <tr>
-          <td><%= review.star %></td>
-          <td><%= review.review_comment %></td>
-          <td><%= review.trader.name %></td>
-          <td><%= review.client.name %></td>
+          <% if client_signed_in? %>
+            <td><%= review.star %></td>
+            <td><%= review.review_comment %></td>
+            <td><%= link_to review.trader.name,client_trader_path(review.trader.id) %></td>
+            <td><%= link_to review.client.name,client_user_path(review.client.id) %></td>
+          <% elsif trader_signed_in? %>
+            <td><%= review.star %></td>
+            <td><%= review.review_comment %></td>
+            <td><%= link_to review.trader.name,trader_user_path(review.trader.id) %></td>
+            <td><%= link_to review.client.name,trader_client_path(review.client.id) %></td>
+          <% elsif admin_signed_in? %>
+            <td><%= review.star %></td>
+            <td><%= review.review_comment %></td>
+            <td><%= link_to review.trader.name,admin_trader_path(review.trader.id) %></td>
+            <td><%= link_to review.client.name,admin_client_path(review.client.id) %></td>
+          <% else %>
+            <td><%= review.star %></td>
+            <td><%= review.review_comment %></td>
+            <td><%= review.trader.name %></td>
+            <td><%= review.client.name %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

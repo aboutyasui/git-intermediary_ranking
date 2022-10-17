@@ -2,10 +2,6 @@ class Admin::TradersController < ApplicationController
   before_action :authenticate_admin!
   before_action :find_params, only: [:show,:edit, :update]
 
-  def index
-    @traders = Trader.page(params[:page]).per(10)
-  end
-
   def show
     @posts = Post.where(trader_id: @trader.id).page(params[:page]).per(5)
   end

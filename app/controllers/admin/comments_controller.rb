@@ -2,6 +2,11 @@ class Admin::CommentsController < ApplicationController
   before_action :authenticate_admin!
   before_action :find_params, only: [:edit, :update, :destroy]
 
+  def index
+    @client = Client.find(params[:client_id])
+    @comments = Comment.where(client_id: @client.id)
+  end
+
   def edit
   end
 
@@ -15,7 +20,7 @@ class Admin::CommentsController < ApplicationController
 
   def destroy
     Comment.find(params[:id]).destroy
-    redirect_to admin_trader_post_path(@post.trader.id,@post.id)
+    redirect_to request.referer || root_path  #元のviewに戻る・・・失敗した場合はroot_pathへ
   end
 
   private

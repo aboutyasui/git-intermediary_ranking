@@ -22,7 +22,7 @@
 					</tr>
 					<tr>
 						<td class="info">職業</td>
-						<td class="text-left"><%= @client.work %></td>
+						<td class="text-left"><%= @client.work_i18n %></td>
 					</tr>
 					<tr>
 						<td class="info">ユーザー情報</td>
@@ -40,12 +40,12 @@
 			</table>
 
 			<p>
-				レビュー履歴
-				<!--%= link_to " 一覧を見る", 〇〇_path, class: "glyphicon glyphicon-folder-open btn btn-info" %-->
+				レビュー履歴:<%= @client.reviews.count %>
+				<%= link_to " 一覧を見る", admin_client_trader_review_path(@client.id,@client.reviews), class: "glyphicon glyphicon-folder-open btn btn-info" %>
 			</p>
 			<p>
-				コメント履歴
-				<!--%= link_to " 一覧を見る", 〇〇_path, class: "glyphicon glyphicon-folder-open btn btn-info" %-->
+				コメント履歴:<%= @client.comments.count %>
+				<%= link_to " 一覧を見る", admin_client_post_comments_path(@client.id,@client.comments), class: "glyphicon glyphicon-folder-open btn btn-info" %>
 			</p>
 		</div>
 	</div>

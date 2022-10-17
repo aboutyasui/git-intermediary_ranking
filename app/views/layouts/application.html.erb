@@ -8,7 +8,7 @@
 
     <!--%= stylesheet_link_tag "application", "data-turbo-track": "reload" %-->
     <!--stylesheet_link_tag は app/asets/stylesheets/application.js を参照するコマンド-->
-    
+
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!--javascript_pack_tag は app/javascript/packs から stylsheetやapplication.js を参照するコマンド-->
@@ -18,11 +18,8 @@
     <%= render 'layouts/header' %>
     <main>
      <p id="notice"><%= flash[:notice] %></p>
-     <div class="d-flex justify-content-center mb-2">
-      <!--%= render 'searches/form' %--><!--キーワード検索未実装のため、コメント-->
-     </div>
      <%= yield %>
     </main>
-   <%= render 'layouts/footer' %>
+   <!--%= render 'layouts/footer' %-->
   </body>
 </html>

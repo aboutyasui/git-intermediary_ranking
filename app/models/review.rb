@@ -11,13 +11,13 @@ class Review < ApplicationRecord
   ##検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
-      @review = Review.where("trader.name LIKE?", "#{word}")
+      @review = Review.where("star LIKE?", "#{word}")
     elsif search == "forward_match"
-      @review = Review.where("trader.name LIKE?","#{word}%")
+      @review = Review.where("star LIKE?","#{word}%")
     elsif search == "backward_match"
-      @review = Review.where("trader.name LIKE?","%#{word}")
+      @review = Review.where("star LIKE?","%#{word}")
     elsif search == "partial_match"
-      @review = Review.where("trader.name LIKE?","%#{word}%")
+      @review = Review.where("star LIKE?","%#{word}%")
     else
       @review = Review.all
     end
