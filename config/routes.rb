@@ -35,14 +35,12 @@ Rails.application.routes.draw do
         patch 'withdraw'#退会処理更新
       end
        resources :user_reviews, only: [:index]#特定の顧客のレビュー一覧
+       resources :comments, only: [:index]#特定の顧客のコメント一覧
     end
     #業者情報
     resources :traders, only: [:show] do
-      #collection do
-        #get 'show_posts'#投稿確認画面
-      #end
       resources :reviews, only: [:new,:create,:show,:edit,:update,:destroy]#特定の店のレビュー一覧 + @
-      resources :posts, only: [:show] do
+      resources :posts, only: [:index,:show] do
         resource :favorites, only: [:create, :destroy]
         resources :comments, only: [:create, :edit, :update, :destroy]
       end
@@ -60,16 +58,17 @@ Rails.application.routes.draw do
         patch 'withdraw'#退会処理更新
       end
       resources :homes, only: [:index]#特定の店のレビュー一覧
+      resources :posts, only: [:index]#特定の店の投稿一覧
     end
     #顧客情報
     resources :clients, only: [:show] do
       resources :reviews, only: [:show]#特定の顧客のレビュー一覧
+      resources :comments, only: [:index]#特定の顧客のコメント一覧
     end
 
     #投稿
-    resources :posts, only: [:new,:index,:create,:show,:edit,:update,:destroy] do
-      resources :comments, only: [:index]
-    end
+    resources :posts, only: [:new,:create,:show,:edit,:update,:destroy]
+    get 'index_posts' => 'homes#index_posts'#全体の投稿一覧
   end
 
   namespace :admin do
@@ -82,7 +81,7 @@ Rails.application.routes.draw do
     end
     resources :traders, only: [:show,:edit,:update] do
       resources :trader_reviews, only: [:index]
-      resources :posts, only: [:show,:edit,:update,:destroy]
+      resources :posts, only: [:index,:show,:edit,:update,:destroy]
     end
     resources :genres, only: [:index,:show, :create, :edit, :update]
   end

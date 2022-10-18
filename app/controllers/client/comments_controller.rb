@@ -1,6 +1,11 @@
 class Client::CommentsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  def index
+    @client = Client.find(params[:user_id])
+    @comments = Comment.where(client_id: @client.id).page(params[:page]).per(5)
+  end
+
   def create
     post = Post.find(params[:post_id])
     comment = current_client.comments.new(comment_params)

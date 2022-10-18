@@ -1,16 +1,16 @@
 class Client < ApplicationRecord
-  has_many :posts
   has_many :comments, dependent: :destroy
   has_many :reviews
   has_many :favorites
+  has_many :favorited_posts, through: :favorites, source: :post #ランキング用の仮想中間テーブル
 
   has_one_attached :profile_image
 
   def get_profile_image(width, height)
-    unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
+    #unless profile_image.attached?
+      #file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
+      #profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    #end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
@@ -38,7 +38,7 @@ class Client < ApplicationRecord
       0.0
     end
   end
-  
+
   ##検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"

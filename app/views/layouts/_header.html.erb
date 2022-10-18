@@ -19,7 +19,7 @@
           <li class="mr-3"><%= link_to "マイページ", trader_user_path(current_trader), class: "btn btn-outline-secondary" %></li>
           <li class="mr-3"><%= link_to "顧客一覧", root_path, class: "btn btn-outline-secondary" %></li>
           <li class="mr-3"><%= link_to "口コミ状況(自社の)", trader_user_homes_path(current_trader), class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "投稿一覧", trader_posts_path, class: "btn btn-outline-secondary" %></li>
+          <li class="mr-3"><%= link_to "投稿一覧", trader_index_posts_path, class: "btn btn-outline-secondary" %></li>
 			    <li class="mr-3"><%= link_to "新規投稿",new_trader_post_path, class: "btn btn-outline-secondary" %></li>
           <li class="mb-1"><%= link_to "ログアウト", destroy_trader_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
         <% elsif admin_signed_in? %>

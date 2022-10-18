@@ -20,7 +20,13 @@
             <tbody>
               <% @traders.each do |trader| %>
               <tr>
-                <td><%= image_tag(trader.get_profile_image(80,80)) %></td>
+                <td>
+                  <% if trader.profile_image.attached? %>
+      							<%= image_tag(trader.get_profile_image(100,100)) %>
+      						<% else %>
+      							<%= image_tag 'leader_sagyouin_woman.jpg', size: "100x100" %>
+      						<% end %>
+                </td>
                 <td><%= link_to trader.name,client_trader_path(trader.id) %></td>
                 <td><%= trader.email %></td>
                 <td><%= trader.telephone_number %></td>
@@ -60,7 +66,13 @@
             <tbody>
               <% @clients.each do |client| %>
               <tr>
-                <td><%= image_tag(client.get_profile_image(100,100)) %></td>
+                <td>
+                  <% if client.profile_image.attached? %>
+      							<%= image_tag(client.get_profile_image(100,100)) %>
+      						<% else %>
+      							<%= image_tag 'sample-author1.jpg', size: "100x100" %>
+      						<% end %>
+                </td>
                 <td><%= link_to client.name,trader_client_path(client.id) %></td>
                 <td><%= client.email %></td>
                 <td><%= client.telephone_number %></td>
@@ -94,7 +106,13 @@
             <tbody>
               <% @traders.each do |trader| %>
               <tr>
-                <td><%= image_tag(trader.get_profile_image(80,80)) %></td>
+                <td>
+                  <% if trader.profile_image.attached? %>
+      							<%= image_tag(trader.get_profile_image(80,80)) %>
+      						<% else %>
+      							<%= image_tag 'leader_sagyouin_woman.jpg', size: "80x80" %>
+      						<% end %>
+                </td>
                 <td><%= link_to trader.name,admin_trader_path(trader.id) %></td>
                 <td><%= trader.email %></td>
                 <td><%= trader.telephone_number %></td>
@@ -134,7 +152,13 @@
             <tbody>
               <% @traders.each do |trader| %>
               <tr>
-                <td><%= image_tag(trader.get_profile_image(100,100)) %></td>
+                <td>
+                  <% if trader.profile_image.attached? %>
+      							<%= image_tag(trader.get_profile_image(100,100)) %>
+      						<% else %>
+      							<%= image_tag 'leader_sagyouin_woman.jpg', size: "100x100" %>
+      						<% end %>
+                </td>
                 <td><%= trader.name %></td>
                 <td><%= trader.email %></td>
                 <td><%= trader.telephone_number %></td>

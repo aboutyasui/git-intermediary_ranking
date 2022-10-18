@@ -18,7 +18,11 @@
           <% @clients.each do |client| %>
             <tr>
               <td>
-              	<%= image_tag(client.get_profile_image(100,100)) %>
+              	<% if client.profile_image.attached? %>
+      						<%= image_tag(client.get_profile_image(100,100)) %>
+      					<% else %>
+      						<%= image_tag 'sample-author1.jpg', size: "100x100" %>
+      					<% end %>
               </td>
               <td><%= link_to client.name,admin_client_path(client.id) %></td>
               <td><%= client.email %></td>

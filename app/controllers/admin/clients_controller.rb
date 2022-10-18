@@ -3,7 +3,7 @@ class Admin::ClientsController < ApplicationController
   before_action :find_params, only: [:show,:edit, :update]
 
   def index
-    @clients = Client.page(params[:page]).per(10)
+    @clients = Client.page(params[:page]).per(5)
   end
 
   def show

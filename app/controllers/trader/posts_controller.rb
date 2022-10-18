@@ -19,7 +19,8 @@ class Trader::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.page(params[:page]).per(10)
+    @trader = Trader.find(params[:user_id])
+    @posts = Post.where(trader_id: @trader.id).page(params[:page]).per(5)
   end
 
   def show

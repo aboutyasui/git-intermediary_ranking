@@ -211,13 +211,17 @@ Admin.create!(
    password: 'aboutadmin',
    name: 'admin1'
 )
+
 5.times do |n|
-  Post.create!(
+  post = Post.create!(
     trader_id: 1,
     title: "テスト投稿#{n + 1}",
     body: "テスト内容#{n + 1}",
   )
+  post.image.attach(io: File.open('app/assets/images/amaebi_computer.jpg'), filename: 'default-image.jpg', content_type: 'image/jpeg')
 end
+
+
 5.times do |n|
   Post.create!(
     trader_id: 2,

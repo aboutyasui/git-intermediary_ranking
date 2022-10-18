@@ -13,7 +13,7 @@
 			<% @posts.each do |post| %>
 				<tr>
 					<td>
-						<%= link_to trader_post_path(post.id) do %>
+						<%= link_to admin_trader_post_path(@trader.id,post.id) do %>
 						  <% if post.image.attached? %>
 								<%= image_tag post.image, size: "80x80" %>
 							<% else %>
@@ -21,15 +21,13 @@
 							<% end %>
 					  <% end %>
 					</td>
-					<td><%= link_to post.title,trader_post_path(post.id) %></td>
+					<td><%= link_to post.title,admin_trader_post_path(@trader.id,post.id) %></td>
 					<td><%= post.body %></td>
 					<td>コメント件数：<%= post.comments.count %></td>
 					<td>いいね数：<%= post.favorites.count %></td>
   				<td>
-  					<% if post.trader == current_trader %>
-    					<%= link_to "編集する", edit_trader_post_path(post.id), class: "btn btn-sm btn-success" %>
-              <%= link_to "削除する", trader_post_path(post.id), data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger",method: :delete  %>
-  					<% end %>
+    				<%= link_to "編集する", edit_admin_trader_post_path(@trader.id,post.id), class: "btn btn-sm btn-success" %>
+            <%= link_to "削除する", admin_trader_post_path(@trader.id,post.id) , data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger",method: :delete  %>
    				</td>
 				</tr>
 			<% end %>

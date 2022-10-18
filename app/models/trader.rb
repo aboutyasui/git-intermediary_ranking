@@ -6,10 +6,10 @@ class Trader < ApplicationRecord
   has_one_attached :profile_image
 
   def get_profile_image(width, height)
-    unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/leader_sagyouin_woman.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
+    #unless profile_image.attached?
+      #file_path = Rails.root.join('app/assets/images/leader_sagyouin_woman.jpg')
+      #profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    #end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
@@ -29,7 +29,7 @@ class Trader < ApplicationRecord
       trader.telephone_number = "52789980949"
     end
   end
-  
+
   ##評価点の平均値
   def review_average(trader)
     if trader.reviews.count >= 1
@@ -41,7 +41,7 @@ class Trader < ApplicationRecord
       0.0
     end
   end
-  
+
   ##検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"

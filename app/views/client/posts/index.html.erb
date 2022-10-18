@@ -6,7 +6,6 @@
 				<th>タイトル</th>
 				<th>内容</th>
 				<th colspan="2">評価関係</th>
-				<th>投稿会社</th>
 			</tr>
 		</thead>
 	  <tbody>
@@ -27,7 +26,6 @@
 					  <!--%= render "favorites/btn", post: post %-->
 					</td>
 					<td><%= "#{post.comments.count}件のコメント" %></td>
-  				<td><%= post.trader.name%></td>
 				</tr>
 			<% end %>
 		</tbody>

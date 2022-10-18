@@ -8,7 +8,11 @@
       <div class="row mx-auto">
 		  	<% @genretraders.each do |trader| %>
 			  	<%= link_to client_trader_path(trader.id), class: "col-3 text-center text-dark text-nowrap mt-5" do %>
-						<%= image_tag(trader.get_profile_image(100,100)) %><br>
+						<% if trader.profile_image.attached? %>
+							<%= image_tag(trader.get_profile_image(100,100)) %>
+						<% else %>
+							<%= image_tag 'leader_sagyouin_woman.jpg', size: "100x100" %>
+						<% end %><br>
 						<%= trader.name %><br>
 						評価点：<%= trader.review_average(trader) %>
 					<% end %>

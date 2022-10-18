@@ -2,6 +2,11 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
+  def index
+    @trader = Trader.find(params[:trader_id])
+    @posts = Post.where(trader_id: @trader.id).page(params[:page]).per(5)
+  end
+
   def show
   end
 
@@ -24,7 +29,7 @@ class Admin::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :image, :body)
   end
 
   def find_post
