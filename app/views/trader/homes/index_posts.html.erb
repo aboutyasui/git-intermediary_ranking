@@ -27,7 +27,7 @@
 					<td>いいね数：<%= post.favorites.count %></td>
   				<td>
   					<%= link_to post.trader.name,trader_user_path(post.trader.id) %>
-  					<% if post.trader == current_trader %>
+  					<% if post.written_by?(current_trader) %>
     					<%= link_to "編集する", edit_trader_post_path(post.id), class: "btn btn-sm btn-success" %>
               <%= link_to "削除する", trader_post_path(post.id), data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger",method: :delete  %>
   					<% end %>
