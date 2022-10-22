@@ -1,0 +1,30 @@
+<div class="container">
+	<div class="row">
+    <%= form_with model: [@trader,@review], url: client_trader_reviews_path(@trader.id), local:true, method: :post do |f| %>
+      <!--評価-->
+      <div class="form-group row" id="star">
+        <%= f.label :star,'評価 ', class:'col' %>
+        <%= f.hidden_field :star, id: :review_star %>
+      </div>
+      <!-- 評価javascript -->
+      <script>
+      $('#star').empty(); //ブラウザバックで星が増え続ける不具合防止。
+      $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        scoreName: 'review[star]',
+        half: false,
+      });
+      </script>
+      <!--コメント-->
+      <div class="form-group">
+        <%= f.label :"コメント" %>
+        <%= f.text_area :review_comment,placeholder: "コメントをここに", class: 'w-100 comment-textarea' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit '保存', class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+</div>

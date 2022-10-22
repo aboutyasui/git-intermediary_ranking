@@ -1,0 +1,50 @@
+<div class="container">
+	<div class="row d-flex">
+		<div class="col-md-3">
+		  <% if @trader.profile_image.attached? %>
+				<%= image_tag(@trader.get_profile_image(200,200)) %>
+			<% else %>
+				<%= image_tag 'leader_sagyouin_woman.jpg', size: "200x200" %>
+			<% end %>
+		</div>
+		<div class="col-md-9">
+			<h2 class="head-line text-center title_h3">
+				<%= @trader.name %>さん 詳細情報
+				評価<%= @trader.review_average(@trader) %>
+			</h2>
+			<p>
+				登録情報
+				<%= link_to " 口コミ状況", client_trader_review_path(@trader.id), class: "btn btn-success" %>
+				<%= link_to " レビューする", new_client_trader_review_path(@trader.id), class: "btn btn-warning" %>
+			</p>
+			<table class="table table-bordered table-condensed" >
+				<tbody>
+					<tr>
+						<td class="info col-xs-2">業者名</td>
+						<td class="text-left"><%= @trader.name %></td>
+					</tr>
+					<tr>
+						<td class="info">メールアドレス</td>
+						<td class="text-left"><%= @trader.email %></td>
+					</tr>
+					<tr>
+						<td class="info">ジャンル</td>
+						<td class="text-left"><%= @trader.genre_id %></td>
+					</tr>
+					<tr>
+						<td class="info">会社情報</td>
+						<td class="text-left"><%= @trader.trader_info %></td>
+					</tr>
+					<tr>
+						<td class="info">電話番号</td>
+						<td class="text-left"><%= @trader.telephone_number %></td>
+					</tr>
+				</tbody>
+			</table>
+			<p>
+				投稿履歴 : <%= @trader.posts.count %>
+				<%= link_to " 一覧ページへ", client_trader_posts_path(@trader.id), class: "btn btn-success" %>
+			</p>
+		</div>
+	</div>
+</div>

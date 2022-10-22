@@ -1,0 +1,180 @@
+<div class="container px-5 px-sm-0">
+    <% if client_signed_in? %><!--clientでログインした場合-->
+      <div class="row">
+        <div class="col-md-2 d-flex align-items-center justify-content-center">
+          <%= render "client/traders/sidebar", genres: @genres %>
+        </div>
+        <div class="col class="col-md-10"">
+          <strong style="font-size:25px;">業者一覧</strong>
+          <table class='table table-hover table-inverse'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>業者名</th>
+                <th>メールアドレス</th>
+                <th>連絡先</th>
+                <th>ジャンル　</th>
+                <th colspan="2">評価点</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% same_rate = 0 %>
+              <% rank = 1 %>
+              <% @traders.each do |trader| %>
+              <tr>
+                  <td>第<br><%= trader[:index] %><br>位</td>
+                  <td>
+                    <% if trader[:trader].profile_image.attached? %>
+        							<%= image_tag(trader[:trader].get_profile_image(100,100)) %>
+        						<% else %>
+        							<%= image_tag 'leader_sagyouin_woman.jpg', size: "100x100" %>
+        						<% end %>
+                  </td>
+                  <td><%= link_to trader[:trader].name,client_trader_path(trader[:trader].id) %></td>
+                  <td><%= trader[:trader].email %></td>
+                  <td><%= trader[:trader].telephone_number %></td>
+                  <td><%= trader[:trader].genre.name %></td>
+                  <td>評価平均：<%= trader[:trader].review_average %></td>
+                  <td>
+                    <%= link_to " 口コミ", client_trader_review_path(trader[:trader].id,trader[:trader].reviews), class: "btn btn-success" %>
+                    <%= link_to "評価する",new_client_trader_review_path(trader[:trader].id), class:"btn btn-warning" %>
+                  </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @traders %>
+        </div>
+      </div>
+    <% elsif trader_signed_in? %><!--traderでログインした場合-->
+      <div class="row d-flex">
+        <div class="col-md-3">
+          <div><!--%= render 'genreのフォルダ先を入力' %--></div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-9">
+          <strong style="font-size:25px;">顧客一覧</strong>
+          <table class='table table-hover table-inverse'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>氏名</th>
+                <th>メールアドレス</th>
+                <th>連絡先</th>
+                <th>職業</th>
+                <th>評価</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @clients.each do |client| %>
+              <tr>
+                <td>
+                  <% if client.profile_image.attached? %>
+      							<%= image_tag(client.get_profile_image(100,100)) %>
+      						<% else %>
+      							<%= image_tag 'sample-author1.jpg', size: "100x100" %>
+      						<% end %>
+                </td>
+                <td><%= link_to client.name,trader_client_path(client.id) %></td>
+                <td><%= client.email %></td>
+                <td><%= client.telephone_number %></td>
+                <td><%= client.work_i18n %></td>
+                <td>評価回数：<%= client.review_count(client) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @clients %>
+        </div>
+      </div>
+      <% elsif admin_signed_in? %><!--clientでログインした場合-->
+      <div class="row">
+        <div class="col-md-2 d-flex align-items-center justify-content-center">
+          <%= render "admin/traders/sidebar", genres: @genres %>
+        </div>
+        <div class="col-md-10">
+          <strong style="font-size:25px;">業者一覧</strong>
+          <table class='table table-hover table-inverse'>
+            <thead>
+              <tr>
+                <th colspan="2"></th>
+                <th>業者名</th>
+                <th>メールアドレス</th>
+                <th>連絡先</th>
+                <th>ジャンル　</th>
+                <th colspan="2">評価点</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @traders.each do |trader| %>
+              <tr>
+                <td>第<br><%= trader[:index] %><br>位</td>
+                <td>
+                  <% if trader[:trader].profile_image.attached? %>
+      							<%= image_tag(trader.get_profile_image(80,80)) %>
+      						<% else %>
+      							<%= image_tag 'leader_sagyouin_woman.jpg', size: "80x80" %>
+      						<% end %>
+                </td>
+                <td><%= link_to trader[:trader].name,admin_trader_path(trader[:trader].id) %></td>
+                <td><%= trader[:trader].email %></td>
+                <td><%= trader[:trader].telephone_number %></td>
+                <td><%= trader[:trader].genre.name %></td>
+                <td><%= trader[:trader].review_average %></td>
+                <td>
+                  <%= link_to " 口コミ", admin_trader_trader_reviews_path(trader[:trader].id), class: "btn btn-warning" %>
+                  <td><%= link_to "編集",edit_admin_trader_path(trader[:trader].id), class: "btn btn-success"%></td>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @traders %>
+        </div>
+      </div>
+    <% else %><!--ログアウトした場合-->
+      <div class="row d-flex">
+        <div class="col-md-2">
+          <div><!--%= render 'genreのフォルダ先を入力' %--></div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-10">
+          <strong style="font-size:25px;">業者一覧</strong>
+          <table class='table table-hover table-inverse'>
+            <thead>
+              <tr>
+                <th colspan="2"></th>
+                <th>業者名</th>
+                <th>メールアドレス</th>
+                <th>連絡先</th>
+                <th>ジャンル</th>
+                <th>評価結果（平均値）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @traders.each do |trader| %>
+              <tr>
+                  <td>第<br><%= trader[:index] %><br>位</td>
+                  <td>
+                    <% if trader[:trader].profile_image.attached? %>
+        							<%= image_tag(trader[:trader].get_profile_image(100,100)) %>
+        						<% else %>
+        							<%= image_tag 'leader_sagyouin_woman.jpg', size: "100x100" %>
+        						<% end %>
+                  </td>
+                  <td><%= trader[:trader].name %></td>
+                  <td><%= trader[:trader].email %></td>
+                  <td><%= trader[:trader].telephone_number %></td>
+                  <td><%= trader[:trader].genre.name %></td>
+                  <td>評価平均：<%= trader[:trader].review_average %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @traders %>
+        </div>
+      </div>
+  <% end %>
+</div>

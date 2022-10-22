@@ -1,0 +1,28 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h2 class="head-line text-center title_h3">
+				<%= @trader.name %>さん レビュー情報
+				<%= @trader.review_avg(@trader)%>
+			</h2>
+			<table class="table table-bordered table-condensed" >
+			  <thead>
+			    <tr>
+			      <th>顧客氏名</th>
+			      <th>点数</th>
+			      <th>コメント</th>
+			    </tr>
+			  </thead>
+				<tbody>
+				  <% @reviews.each do |review| %>
+					  <tr>
+					    <td><%= review.client.name %></td>
+					    <td><%= review.star %></td>
+					    <td><%= review.review_comment %></td>
+					  </tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

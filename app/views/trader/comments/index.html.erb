@@ -1,0 +1,24 @@
+<h2 class="head-line text-center title_h3"><%= @client.name %>さん 詳細情報</h2>
+<p>コメント履歴:<%= @comments.count%>件のコメント履歴があります
+	<div class=col>
+		<table class="table table-bordered table-condensed" >
+      <thead>
+      	<tr>
+        	<th>タイトル</th>
+        	<th>投稿した会社</th>
+        	<th>評価関係</th>
+        </tr>
+      </thead>
+      <tbody>
+				<% @comments.each do |comment| %>
+				  <tr>
+					  <td><%= link_to comment.post.title,trader_post_path(comment.post.id) %></td>
+					  <td><%= link_to comment.post.trader.name,trader_user_path(comment.post.trader.id) %></td>
+					  <td>いいね数：<%= comment.post.favorites.count%></td>
+				  </tr>
+				<% end %>
+			 </tbody>
+		</table>
+		<%= paginate @comments %>
+	</div>
+</p>

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7 mx-auto">
+      <h4 class="m-3"><strong><%=@client.name %>さんコメント一覧</strong></h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>投稿タイトル</th>
+            <th>投稿者</th>
+            <th>コメント</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @comments.each do |comment| %>
+            <tr>
+              <td><%= link_to comment.post.title,admin_client_post_path(@client.id,comment.post.id) %></td>
+              <td><%= link_to comment.post.trader.name,admin_trader_path(comment.post.trader.id) %></td>
+              <td><%= comment.comment %></td>
+              <td><%= link_to "編集する", edit_admin_client_post_comment_path(@client.id,comment.post.id,comment.id), class: "btn btn-success" %></td>
+              <td><%= link_to "削除", admin_client_post_comment_path(@client.id,comment.post.id,comment.id), method: :delete %></td>
+          <% end %>
+    </div>
+  </div>
+</div>
+
