@@ -43,7 +43,7 @@ class Trader < ApplicationRecord
   end
 
     ##評価点の平均値その２=topページ以外用
-  def review_avg(trader)
+  def reviewavg(trader)
     if trader.reviews.count >= 1
       reviews=Review.where(trader_id: trader.id).pluck(:star)#starカラムに保存されている評価点数（文字列型）を取得
       reviews.map!(&:to_i)#取得した変数（reviews）を数列型へ変更する
