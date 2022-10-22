@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2022_10_09_053956) do
   create_table "posts", force: :cascade do |t|
     t.integer "trader_id", null: false
     t.string "title", default: "", null: false
-    t.text "body", default: "", null: false
+    t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["trader_id"], name: "index_posts_on_trader_id"
