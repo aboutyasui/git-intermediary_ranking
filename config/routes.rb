@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     end
     #業者情報
     resources :traders, only: [:show] do
-      resources :reviews, only: [:new,:create,:show,:edit,:update,:destroy]#特定の店のレビュー一覧 + @
+      resources :reviews, only: [:new,:create,:index,:show,:edit,:update,:destroy]#特定の店のレビュー一覧 + @
       resources :posts, only: [:index,:show] do
         resource :favorites, only: [:create, :destroy]
         resources :comments, only: [:create, :edit, :update, :destroy]

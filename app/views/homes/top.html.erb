@@ -36,7 +36,7 @@
                   <td><%= trader[:trader].genre.name %></td>
                   <td>評価平均：<%= trader[:trader].review_average %></td>
                   <td>
-                    <%= link_to " 口コミ", client_trader_review_path(trader[:trader].id,trader[:trader].reviews), class: "btn btn-success" %>
+                    <%= link_to " 口コミ", client_trader_reviews_path(trader[:trader].id), class: "btn btn-success" %>
                     <%= link_to "評価する",new_client_trader_review_path(trader[:trader].id), class:"btn btn-warning" %>
                   </td>
               </tr>

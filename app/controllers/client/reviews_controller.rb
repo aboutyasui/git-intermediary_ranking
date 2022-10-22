@@ -1,7 +1,7 @@
 class Client::ReviewsController < ApplicationController
   before_action :authenticate_client!
   before_action :find_params, only: [:edit, :update, :destroy]
-  before_action :get_params, only: [:new, :create, :show]
+  before_action :get_params, only: [:new, :create, :index]
 
   def new
     @review = current_client.reviews.find_by(trader_id: @trader.id)
@@ -29,8 +29,11 @@ class Client::ReviewsController < ApplicationController
     end
   end
 
-  def show
+  def index
     @reviews=Review.where(trader_id: @trader.id)
+  end
+
+  def show
   end
 
   def edit
