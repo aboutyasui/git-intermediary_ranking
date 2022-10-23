@@ -14,7 +14,7 @@
 			</h2>
 			<p>
 				登録情報
-				<%= link_to " 口コミ状況", client_trader_review_path(@trader.id), class: "btn btn-success" %>
+				<%= link_to " 口コミ状況", client_trader_reviews_path(@trader.id), class: "btn btn-success" %>
 				<%= link_to " レビューする", new_client_trader_review_path(@trader.id), class: "btn btn-warning" %>
 			</p>
 			<table class="table table-bordered table-condensed" >
