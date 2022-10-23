@@ -1,7 +1,10 @@
 <!--%= render "comments/form", post: @post, comment: @comment %-->
-
-<!--コメント入力Form-->
-<%= form_with(model:[@post, @comment],url: client_post_comment_path(@post.id,@comment.id), method: :patch, local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100 comment-textarea" %>
-  <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-<% end %>
+<div class="container">
+	<div class="row">
+    <!--コメント入力Form-->
+    <%= form_with(model:[@post, @comment],url: client_trader_post_comment_path(@post.trader.id,@post.id,@comment.id), method: :patch, local: true) do |f| %>
+      <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100 comment-textarea" %>
+      <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+    <% end %>
+  </div>
+</div>

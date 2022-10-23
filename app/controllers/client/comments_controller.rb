@@ -15,6 +15,7 @@ class Client::CommentsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:post_id])
   end
 
   def update
