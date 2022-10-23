@@ -15,12 +15,11 @@ class Client::CommentsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:post_id])
   end
 
   def update
     if @comment.update(comment_params)
-      redirect_to client_trader_post_path(@post.trader.id,@comment.post_id), notice: "You have updated book successfully."
+      redirect_to client_trader_post_path(@comment.post.trader.id,@comment.post_id), notice: "You have updated book successfully."
     else
       render :edit#編集ページに戻る
     end
