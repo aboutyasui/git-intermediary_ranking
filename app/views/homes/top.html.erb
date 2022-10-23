@@ -112,7 +112,7 @@
                 <td>第<br><%= trader[:index] %><br>位</td>
                 <td>
                   <% if trader[:trader].profile_image.attached? %>
-      							<%= image_tag(trader.get_profile_image(80,80)) %>
+      							<%= image_tag(trader[:trader].get_profile_image(80,80)) %>
       						<% else %>
       							<%= image_tag 'leader_sagyouin_woman.jpg', size: "80x80" %>
       						<% end %>
