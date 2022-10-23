@@ -27,7 +27,7 @@ class Client::CommentsController < ApplicationController
 
   def destroy
     Comment.find(params[:id]).destroy
-    redirect_to client_trader_post_path(@comment.post.trader.id,@comment.post_id)
+    redirect_to request.referer || root_path  #元のviewに戻る・・・失敗した場合はroot_pathへ
   end
 
   private

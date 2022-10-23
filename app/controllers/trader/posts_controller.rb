@@ -40,7 +40,7 @@ class Trader::PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to trader_user_path(current_trader)
+    redirect_to request.referer || root_path  #元のviewに戻る・・・失敗した場合はroot_pathへ
   end
 
   private

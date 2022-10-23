@@ -41,7 +41,7 @@ class Client::ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params)
-      redirect_to client_trader_review_path(@trader.id,@review.id), notice: "レビューの更新が成功しました"
+      redirect_to client_trader_reviews_path(@trader.id), notice: "レビューの更新が成功しました"
     else
       render :edit, notice: "レビューの更新が失敗しました"#編集ページに戻る
     end
@@ -49,7 +49,7 @@ class Client::ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to client_user_path(current_client)
+    redirect_to request.referer || root_path  #元のviewに戻る・・・失敗した場合はroot_pathへ
   end
 
   private
