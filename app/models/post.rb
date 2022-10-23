@@ -11,14 +11,6 @@ class Post < ApplicationRecord
     trader == current_trader
   end
 
-  def get_image
-    #unless self.image.attached?
-    #  file_path = Rails.root.join('app/assets/images/20200502_noimage.jpg')
-    #  self.image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    #end
-    image#.variant(resize_to_limit: [width, height]).processed
-  end
-
   def favorited_by?(client)
     self.favorites.exists?(client_id: client.id)
   end
