@@ -16,7 +16,7 @@
 				<tbody>
 				  <% @reviews.each do |review| %>
 					  <tr>
-					    <td><%= review.client.name %></td>
+					    <td><%= link_to review.client.name,trader_client_path(review.client.id) %></td>
 					    <td><%= review.star %></td>
 					    <td><%= review.review_comment %></td>
 					  </tr>
