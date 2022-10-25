@@ -1,43 +1,43 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
-    <a class="navbar-brand"><span><%= link_to image_tag('ranking1.jpg', size: '100x50'), root_path %></span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse flex-column" id="navbarNavDropdown">
-      <ul class="navbar-nav ml-auto">
-        <% if client_signed_in? %>
-          <li class="mr-3">ようこそ、<%= current_client.name %>さん！</li>
-          <li class="mr-3"><%= link_to "マイページ", client_user_path(current_client), class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "業者一覧", root_path, class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "投稿一覧", client_homes_path, class: "btn btn-outline-secondary" %></li>
-          <!--li class="mr-3"><!%= link_to "ジャンル", _path, class: "btn btn-outline-secondary" %></li-->
-          <li class="mb-1"><%= link_to "ログアウト", destroy_client_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
-        <% elsif trader_signed_in? %>
-          <li class="mr-3">ようこそ、<%= current_trader.name %>さん！</li>
-          <li class="mr-3"><%= link_to "マイページ", trader_user_path(current_trader), class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "顧客一覧", root_path, class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "口コミ状況(自社の)", trader_user_homes_path(current_trader), class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "投稿一覧", trader_index_posts_path, class: "btn btn-outline-secondary" %></li>
-			    <li class="mr-3"><%= link_to "新規投稿",new_trader_post_path, class: "btn btn-outline-secondary" %></li>
-          <li class="mb-1"><%= link_to "ログアウト", destroy_trader_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
-        <% elsif admin_signed_in? %>
-          <li class="mr-3"><%= link_to "業者一覧", root_path, class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "顧客一覧", admin_clients_path, class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "投稿一覧", admin_top_path, class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-secondary"  %></li>
-          <li class="mb-1"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
-        <% else %>
-          <li class="mr-3"><%= link_to "About", about_path, class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "業者一覧", root_path, class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "新規登録(顧客)", new_client_registration_path, class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "ログイン（顧客）", new_client_session_path, class: "btn btn-outline-secondary" %></li>
-          <li class="mr-3"><%= link_to "新規登録(業者)", new_trader_registration_path, class: "btn btn-outline-secondary" %></li>
-          <li class="mb-1"><%= link_to "ログイン（業者）", new_trader_session_path, class: "btn btn-outline-secondary" %></li>
-        <% end %>
-      </ul>
-        <%= render 'searches/search' %>
+    <div class="row">
+      <a class="navbar-brand "><span><%= link_to image_tag('ranking1.jpg', size: '100x50'), root_path %></span></a>
+      <div class="collapse navbar-collapse flex-column" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <% if client_signed_in? %>
+            <li class="mr-3">ようこそ<%= current_client.name %>さん！</li>
+            <li class="mr-3"><%= link_to "About", about_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "マイページ", client_user_path(current_client), class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "業者一覧", root_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "投稿一覧", client_homes_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mb-1"><%= link_to "ログアウト", destroy_client_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
+          <% elsif trader_signed_in? %>
+            <li class="mr-3">ようこそ<%= current_trader.name %>さん！</li>
+            <li class="mr-3"><%= link_to "About", about_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "マイページ", trader_user_path(current_trader), class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "顧客一覧", root_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "口コミ状況(自社の)", trader_user_homes_path(current_trader), class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "投稿一覧", trader_index_posts_path, class: "btn btn-outline-secondary" %></li>
+  			    <li class="mr-3"><%= link_to "新規投稿",new_trader_post_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mb-1"><%= link_to "ログアウト", destroy_trader_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
+          <% elsif admin_signed_in? %>
+            <li class="mr-3"><%= link_to "About", about_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "業者一覧", root_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "顧客一覧", admin_clients_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "投稿一覧", admin_top_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-secondary"  %></li>
+            <li class="mb-1"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
+          <% else %>
+            <li class="mr-3"><%= link_to "About", about_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "業者一覧", root_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "新規登録(顧客)", new_client_registration_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "ログイン（顧客）", new_client_session_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mr-3"><%= link_to "新規登録(業者)", new_trader_registration_path, class: "btn btn-outline-secondary" %></li>
+            <li class="mb-1"><%= link_to "ログイン（業者）", new_trader_session_path, class: "btn btn-outline-secondary" %></li>
+          <% end %>
+        </ul>
+          <%= render 'searches/search' %>
+      </div>
     </div>
   </div>
 </nav>
