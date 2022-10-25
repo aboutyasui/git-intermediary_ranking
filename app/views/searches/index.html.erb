@@ -1,101 +1,133 @@
-<h2>検索結果</h2>
+<div class="container">
+	<div class="row">
 
-<table class="table table-hover table-inverse">
-  <!--検索対象モデルがclientの時 -->
-  <% if @range == "Client" %>
-    <tbody>
-      <% @clients.each do |client| %>
-        <tr>
-          <% if client_signed_in? %>
-            <td><%= link_to client.name,client_user_path(client.id) %></td>
-            <td><%= client.work %></td>
-          <% elsif trader_signed_in? %>
-            <td><%= link_to client.name,trader_client_path(client.id) %></td>
-            <td><%= client.work %></td>
-          <% elsif admin_signed_in? %>
-            <td><%= link_to client.name,admin_client_path(client.id) %></td>
-            <td><%= client.work %></td>
-          <% else %>
-            <td><%= client.name %></td>
-            <td><%= client.work %></td>
+    <h2>検索結果</h2>
+
+    <table class="table table-hover table-inverse">
+      <!--検索対象モデルがclientの時 -->
+      <% if @range == "Client" %>
+        <thead>
+          <tr>
+            <th>顧客名</th>
+            <th>職業</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @clients.each do |client| %>
+            <tr>
+              <% if client_signed_in? %>
+                <td><%= link_to client.name,client_user_path(client.id) %></td>
+                <td><%= client.work %></td>
+              <% elsif trader_signed_in? %>
+                <td><%= link_to client.name,trader_client_path(client.id) %></td>
+                <td><%= client.work %></td>
+              <% elsif admin_signed_in? %>
+                <td><%= link_to client.name,admin_client_path(client.id) %></td>
+                <td><%= client.work %></td>
+              <% else %>
+                <td><%= client.name %></td>
+                <td><%= client.work %></td>
+              <% end %>
+            </tr>
           <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  <% elsif @range == "Trader" %>
-    <!--検索対象モデルがTraderの時 -->
-    <tbody>
-      <% @traders.each do |trader| %>
-        <tr>
-          <% if client_signed_in? %>
-            <td><%= link_to trader.name,client_trader_path(trader.id) %></td>
-            <td><%= trader.genre.name %></td>
-            <td>評価点：<%= trader.review_avg(trader) %></td>
-          <% elsif trader_signed_in? %>
-            <td><%= link_to trader.name,trader_user_path(trader.id) %></td>
-            <td><%= trader.genre.name %></td>
-            <td>評価点：<%= trader.review_avg(trader) %></td>
-          <% elsif admin_signed_in? %>
-            <td><%= link_to trader.name,admin_trader_path(trader.id)  %></td>
-            <td><%= trader.genre.name %></td>
-            <td>評価点：<%= trader.review_avg(trader) %></td>
-          <% else %>
-            <td><%= trader.name %></td>
-            <td><%= trader.genre.name %></td>
-            <td>評価点：<%= trader.review_aveg(trader) %></td>
+        </tbody>
+      <% elsif @range == "Trader" %>
+        <!--検索対象モデルがTraderの時 -->
+        <thead>
+          <tr>
+            <th>業者名</th>
+            <th>ジャンル（専門職）</th>
+            <th>評価点</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @traders.each do |trader| %>
+            <tr>
+              <% if client_signed_in? %>
+                <td><%= link_to trader.name,client_trader_path(trader.id) %></td>
+                <td><%= trader.genre.name %></td>
+                <td>評価点：<%= trader.review_avg(trader) %></td>
+              <% elsif trader_signed_in? %>
+                <td><%= link_to trader.name,trader_user_path(trader.id) %></td>
+                <td><%= trader.genre.name %></td>
+                <td>評価点：<%= trader.review_avg(trader) %></td>
+              <% elsif admin_signed_in? %>
+                <td><%= link_to trader.name,admin_trader_path(trader.id)  %></td>
+                <td><%= trader.genre.name %></td>
+                <td>評価点：<%= trader.review_avg(trader) %></td>
+              <% else %>
+                <td><%= trader.name %></td>
+                <td><%= trader.genre.name %></td>
+                <td>評価点：<%= trader.review_aveg(trader) %></td>
+              <% end %>
+            </tr>
           <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  <% elsif @range == "Post" %>
-    <!--検索対象モデルがPostの時 -->
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <% if client_signed_in? %>
-            <td><%= link_to post.title,client_trader_post_path(post.trader.id,post.id) %></td>
-            <td><%= post.body %></td>
-          <% elsif trader_signed_in? %>
-            <td><%= link_to post.title,trader_post_path(post.id) %></td>
-            <td><%= post.body %></td>
-          <% elsif admin_signed_in? %>
-            <td><%= link_to post.title,admin_trader_post_path(post.trader.id,post.id) %></td>
-            <td><%= post.body %></td>
-          <% else %>
-            <td><%= post.title %></td>
-            <td><%= post.body %></td>
+        </tbody>
+      <% elsif @range == "Post" %>
+        <!--検索対象モデルがPostの時 -->
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>内容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <% if client_signed_in? %>
+                <td><%= link_to post.title,client_trader_post_path(post.trader.id,post.id) %></td>
+                <td><%= post.body %></td>
+              <% elsif trader_signed_in? %>
+                <td><%= link_to post.title,trader_post_path(post.id) %></td>
+                <td><%= post.body %></td>
+              <% elsif admin_signed_in? %>
+                <td><%= link_to post.title,admin_trader_post_path(post.trader.id,post.id) %></td>
+                <td><%= post.body %></td>
+              <% else %>
+                <td><%= post.title %></td>
+                <td><%= post.body %></td>
+              <% end %>
+            </tr>
           <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  <% else %>
-    <!--検索対象モデルがReviewの時 -->
-    <tbody>
-      <% @reviews.each do |review| %>
-        <tr>
-          <% if client_signed_in? %>
-            <td><%= review.star %></td>
-            <td><%= review.review_comment %></td>
-            <td><%= link_to review.trader.name,client_trader_path(review.trader.id) %></td>
-            <td><%= link_to review.client.name,client_user_path(review.client.id) %></td>
-          <% elsif trader_signed_in? %>
-            <td><%= review.star %></td>
-            <td><%= review.review_comment %></td>
-            <td><%= link_to review.trader.name,trader_user_path(review.trader.id) %></td>
-            <td><%= link_to review.client.name,trader_client_path(review.client.id) %></td>
-          <% elsif admin_signed_in? %>
-            <td><%= review.star %></td>
-            <td><%= review.review_comment %></td>
-            <td><%= link_to review.trader.name,admin_trader_path(review.trader.id) %></td>
-            <td><%= link_to review.client.name,admin_client_path(review.client.id) %></td>
-          <% else %>
-            <td><%= review.star %></td>
-            <td><%= review.review_comment %></td>
-            <td><%= review.trader.name %></td>
-            <td><%= review.client.name %></td>
+        </tbody>
+      <% else %>
+        <!--検索対象モデルがReviewの時 -->
+        <thead>
+          <tr>
+            <th>点数</th>
+            <th>レビューコメント</th>
+            <th>業者名</th>
+            <th>顧客名</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reviews.each do |review| %>
+            <tr>
+              <% if client_signed_in? %>
+                <td><%= review.star %></td>
+                <td><%= review.review_comment %></td>
+                <td><%= link_to review.trader.name,client_trader_path(review.trader.id) %></td>
+                <td><%= link_to review.client.name,client_user_path(review.client.id) %></td>
+              <% elsif trader_signed_in? %>
+                <td><%= review.star %></td>
+                <td><%= review.review_comment %></td>
+                <td><%= link_to review.trader.name,trader_user_path(review.trader.id) %></td>
+                <td><%= link_to review.client.name,trader_client_path(review.client.id) %></td>
+              <% elsif admin_signed_in? %>
+                <td><%= review.star %></td>
+                <td><%= review.review_comment %></td>
+                <td><%= link_to review.trader.name,admin_trader_path(review.trader.id) %></td>
+                <td><%= link_to review.client.name,admin_client_path(review.client.id) %></td>
+              <% else %>
+                <td><%= review.star %></td>
+                <td><%= review.review_comment %></td>
+                <td><%= review.trader.name %></td>
+                <td><%= review.client.name %></td>
+              <% end %>
+            </tr>
           <% end %>
-        </tr>
+        </tbody>
       <% end %>
-    </tbody>
-  <% end %>
-</table>
+    </table>
+  </div>
+</div>
