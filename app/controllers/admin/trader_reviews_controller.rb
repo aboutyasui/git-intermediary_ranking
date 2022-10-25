@@ -24,18 +24,18 @@ class Admin::TraderReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to admin_client_trader_review_path(@client.id,@review.id), notice: "レビューの削除が成功しました"
+    redirect_to request.referer || root_path, notice: "レビューの削除が成功しました"
   end
-  
+
   private
-  
+
   def review_params
     params.require(:review).permit(:client_id,:trader_id,:star,:review_comment)
   end
-  
+
   def find_params
     @client = Client.find(params[:client_id])
     @review = Review.find(params[:id])
   end
-  
+
 end
