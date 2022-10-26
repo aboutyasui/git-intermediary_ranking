@@ -1,0 +1,35 @@
+<thead>
+  <tr>
+    <th>点数</th>
+    <th>レビューコメント</th>
+    <th>業者名</th>
+    <th>顧客名</th>
+  </tr>
+</thead>
+<tbody>
+  <% reviews.each do |review| %>
+    <tr>
+      <% if client_signed_in? %>
+        <td><%= review.star %></td>
+        <td><%= review.review_comment %></td>
+        <td><%= link_to review.trader.name,client_trader_path(review.trader.id) %></td>
+        <td><%= link_to review.client.name,client_user_path(review.client.id) %></td>
+      <% elsif trader_signed_in? %>
+        <td><%= review.star %></td>
+        <td><%= review.review_comment %></td>
+        <td><%= link_to review.trader.name,trader_user_path(review.trader.id) %></td>
+        <td><%= link_to review.client.name,trader_client_path(review.client.id) %></td>
+      <% elsif admin_signed_in? %>
+        <td><%= review.star %></td>
+        <td><%= review.review_comment %></td>
+        <td><%= link_to review.trader.name,admin_trader_path(review.trader.id) %></td>
+        <td><%= link_to review.client.name,admin_client_path(review.client.id) %></td>
+      <% else %>
+        <td><%= review.star %></td>
+        <td><%= review.review_comment %></td>
+        <td><%= review.trader.name %></td>
+        <td><%= review.client.name %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</tbody>

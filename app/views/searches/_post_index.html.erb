@@ -1,0 +1,25 @@
+<thead>
+  <tr>
+    <th>タイトル</th>
+    <th>内容</th>
+  </tr>
+</thead>
+<tbody>
+  <% posts.each do |post| %>
+    <tr>
+      <% if client_signed_in? %>
+        <td><%= link_to post.title,client_trader_post_path(post.trader.id,post.id) %></td>
+        <td><%= post.body %></td>
+      <% elsif trader_signed_in? %>
+        <td><%= link_to post.title,trader_post_path(post.id) %></td>
+        <td><%= post.body %></td>
+      <% elsif admin_signed_in? %>
+        <td><%= link_to post.title,admin_trader_post_path(post.trader.id,post.id) %></td>
+        <td><%= post.body %></td>
+      <% else %>
+        <td><%= post.title %></td>
+        <td><%= post.body %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</tbody>

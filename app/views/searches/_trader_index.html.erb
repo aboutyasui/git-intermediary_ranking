@@ -1,0 +1,30 @@
+<thead>
+  <tr>
+    <th>業者名</th>
+    <th>ジャンル（専門職）</th>
+    <th>評価点</th>
+  </tr>
+</thead>
+<tbody>
+  <% traders.each do |trader| %>
+    <tr>
+      <% if client_signed_in? %>
+        <td><%= link_to trader.name,client_trader_path(trader.id) %></td>
+        <td><%= trader.genre.name %></td>
+        <td>評価点：<%= trader.review_avg(trader) %></td>
+      <% elsif trader_signed_in? %>
+        <td><%= link_to trader.name,trader_user_path(trader.id) %></td>
+        <td><%= trader.genre.name %></td>
+        <td>評価点：<%= trader.review_avg(trader) %></td>
+      <% elsif admin_signed_in? %>
+        <td><%= link_to trader.name,admin_trader_path(trader.id)  %></td>
+        <td><%= trader.genre.name %></td>
+        <td>評価点：<%= trader.review_avg(trader) %></td>
+      <% else %>
+        <td><%= trader.name %></td>
+        <td><%= trader.genre.name %></td>
+        <td>評価点：<%= trader.review_aveg(trader) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</tbody>
