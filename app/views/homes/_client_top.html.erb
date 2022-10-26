@@ -1,0 +1,35 @@
+<thead>
+  <tr>
+    <th></th>
+    <th>業者名</th>
+    <th>メールアドレス</th>
+    <th>連絡先</th>
+    <th>ジャンル　</th>
+    <th colspan="2">評価点</th>
+  </tr>
+</thead>
+<tbody>
+  <% same_rate = 0 %>
+  <% rank = 1 %>
+  <% traders.each do |trader| %>
+    <tr>
+      <td>第<br><%= trader[:index] %><br>位</td>
+      <td>
+        <% if trader[:trader].profile_image.attached? %>
+          <%= image_tag(trader[:trader].get_profile_image(100,100)) %>
+        <% else %>
+          <%= image_tag 'leader_sagyouin_woman.jpg', size: "100x100" %>
+        <% end %>
+      </td>
+      <td><%= link_to trader[:trader].name,client_trader_path(trader[:trader].id) %></td>
+      <td><%= trader[:trader].email %></td>
+      <td><%= trader[:trader].telephone_number %></td>
+      <td><%= trader[:trader].genre.name %></td>
+      <td>評価平均：<%= trader[:trader].review_average %></td>
+      <td>
+        <%= link_to " 口コミ", client_trader_reviews_path(trader[:trader].id), class: "btn btn-success" %>
+        <%= link_to "評価する",new_client_trader_review_path(trader[:trader].id), class:"btn btn-warning" %>
+      </td>
+    </tr>
+  <% end %>
+</tbody>

@@ -42,7 +42,7 @@
 				</tbody>
 			</table>
 			<p>
-				投稿履歴 : <%= @trader.posts.count %>
+				投稿履歴 : <%= @trader.posts.count %>件<br>
 				<%= link_to " 一覧ページへ", client_trader_posts_path(@trader.id), class: "btn btn-success" %>
 			</p>
 		</div>

@@ -44,7 +44,7 @@
 				</tbody>
 			</table>
 			<p>
-				投稿履歴:<%= @posts.count%>件の投稿履歴があります
+				投稿履歴 : <%= @posts.count%>件<br>
 				<%= link_to " 一覧ページへ", trader_user_posts_path(@trader.id), class: "btn btn-success" %>
 			 	<% if  @trader.id == current_trader.id %>
 			  	<%= link_to "新規投稿",new_trader_post_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>

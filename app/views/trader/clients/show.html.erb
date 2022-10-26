@@ -39,11 +39,11 @@
 			</table>
 
 			<p>
-				レビュー履歴
+				レビュー履歴 : <%= @client.reviews.count%><br>
 				<%= link_to " 一覧へ", trader_client_review_path(@client.id,@client.reviews), class: "glyphicon glyphicon-folder-open btn btn-info" %>
 			</p>
 			<p>
-				コメント履歴:<%= @comments.count%>件のコメント履歴があります
+				コメント履歴 : <%= @comments.count%>件<br>
 				<%= link_to " 一覧ページへ", trader_client_comments_path(@client.id), class: "btn btn-success" %>
 			</p>
 		</div>

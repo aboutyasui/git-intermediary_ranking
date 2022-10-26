@@ -23,8 +23,8 @@
 					</td>
 					<td><%= link_to post.title,client_trader_post_path(post.trader.id,post.id) %></td>
 					<td><%= post.body %></td>
-					<td>いいね数：<%= post.favorites.count %>
-					  <!--%= render "favorites/btn", post: post %-->
+					<td>
+					  <%= render "client/favorites/btn", post: post %>
 					</td>
 					<td><%= "#{post.comments.count}件のコメント" %></td>
   				<td><%= post.trader.name%></td>

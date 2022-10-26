@@ -44,11 +44,11 @@
 			</table>
 
 			<p>
-				レビュー履歴:<%= @client.reviews.count %>
+				レビュー履歴 : <%= @client.reviews.count %><br>
 				<%= link_to " 一覧を見る", admin_client_trader_review_path(@client.id,@client.reviews), class: "glyphicon glyphicon-folder-open btn btn-info" %>
 			</p>
 			<p>
-				コメント履歴:<%= @client.comments.count %>
+				コメント履歴 : <%= @client.comments.count %><br>
 				<%= link_to " 一覧を見る", admin_client_post_comments_path(@client.id,@client.comments), class: "glyphicon glyphicon-folder-open btn btn-info" %>
 			</p>
 		</div>

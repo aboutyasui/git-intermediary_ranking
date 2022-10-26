@@ -4,23 +4,23 @@
 			<h2 class="head-line text-center title_h3"><%= @client.name %>さん 詳細情報</h2>
 			<p>コメント履歴:<%= @comments.count%>件のコメント履歴があります</p>
 			<table class="table table-bordered table-condensed" >
-		    <thead>
-		      <tr>
-		        <th>タイトル</th>
-		        <th>投稿した会社</th>
-		        <th>評価関係</th>
-		        <th colspan="2"></th>
-		      </tr>
-		    </thead>
-		  	<tbody>
+				<thead>
+					<tr>
+						<th>タイトル</th>
+						<th>投稿した会社</th>
+						<th>評価関係</th>
+						<th colspan="2"></th>
+					</tr>
+				</thead>
+				<tbody>
 					<% @comments.each do |comment| %>
 						<tr>
 							<td><%= link_to comment.post.title,client_trader_post_path(comment.post.trader.id,comment.post.id) %></td>
 							<td><%= link_to comment.post.trader.name,client_trader_path(comment.post.trader.id) %></td>
 							<td>いいね数：<%= comment.post.favorites.count%></td>
 							<% if comment.client == current_client %>
-						 		<td><%= link_to "編集",edit_client_trader_post_comment_path(comment.post.trader.id,comment.post.id,comment.id), class: "btn btn-sm btn-success" %></td>
-						 		<td><%= link_to "削除",client_trader_post_comment_path(comment.post.trader.id,comment.post.id,comment.id), data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger",method: :delete %></td>
+								<td><%= link_to "編集",edit_client_trader_post_comment_path(comment.post.trader.id,comment.post.id,comment.id), class: "btn btn-sm btn-success" %></td>
+								<td><%= link_to "削除",client_trader_post_comment_path(comment.post.trader.id,comment.post.id,comment.id), data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger",method: :delete %></td>
 							<% end %>
 						</tr>
 					<% end %>

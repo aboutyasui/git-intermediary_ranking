@@ -1,0 +1,6 @@
+<%= form_with model:genre, url: admin_genre_path, local:true do |f| %>
+  <p class="my-5 mx-2">ジャンル名
+    <%= f.text_field :name, class: "mx-2" %>
+    <%= f.submit '保存', class: "btn btn-success mx-2" %>
+  </p>
+<% end %>

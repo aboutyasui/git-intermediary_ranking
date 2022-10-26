@@ -1,0 +1,29 @@
+<thead>
+  <tr>
+    <th colspan="2"></th>
+    <th>業者名</th>
+    <th>メールアドレス</th>
+    <th>連絡先</th>
+    <th>ジャンル</th>
+    <th>評価結果（平均値）</th>
+  </tr>
+</thead>
+<tbody>
+  <% traders.each do |trader| %>
+    <tr>
+      <td>第<br><%= trader[:index] %><br>位</td>
+      <td>
+        <% if trader[:trader].profile_image.attached? %>
+          <%= image_tag(trader[:trader].get_profile_image(100,100)) %>
+        <% else %>
+          <%= image_tag 'leader_sagyouin_woman.jpg', size: "100x100" %>
+        <% end %>
+      </td>
+      <td><%= trader[:trader].name %></td>
+      <td><%= trader[:trader].email %></td>
+      <td><%= trader[:trader].telephone_number %></td>
+      <td><%= trader[:trader].genre.name %></td>
+      <td>評価平均：<%= trader[:trader].review_average %></td>
+    </tr>
+  <% end %>
+</tbody>

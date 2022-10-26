@@ -12,17 +12,8 @@
    <table class="table table-hover table-inverse">
     <tr>
      <td>タイトル</td>
-     <td><%= @post.title %>
-     <% if @post.favorited_by?(current_client) %>
-      <%= link_to client_trader_post_favorites_path(@post.trader.id,@post.id),method: :delete do %>
-       ♥<%= @post.favorites.count %> いいね
-      <% end %>
-     <% else %>
-      <%= link_to client_trader_post_favorites_path(@post.trader.id,@post.id) ,method: :post do %>
-       ♡<%= @post.favorites.count %> いいね
-      <% end %>
-     <% end %>
-      <!--%= render "../favorites/btn", post: @post %-->
+     <td>
+      <%= render "client/favorites/btn", post: @post %>
      </td>
     </tr>
     <tr>
