@@ -39,13 +39,13 @@ Rails.application.routes.draw do
     end
     #業者情報
     resources :traders, only: [:show] do
-      resources :reviews, only: [:new,:create,:index,:show,:edit,:update,:destroy]#特定の店のレビュー一覧 + @
-      resources :posts, only: [:index,:show] do
+      resources :reviews, only: [:new,:create,:index,:edit,:update,:destroy]#特定の店のレビュー一覧 + @
+      resources :posts, only: [:index,:show] do #index　→　特定のtraderに対しての一覧
         resource :favorites, only: [:create, :destroy]
         resources :comments, only: [:create, :edit, :update, :destroy]
       end
     end
-    get 'homes'=>'homes#index'
+    get 'homes'=>'homes#index'#すべての投稿の一覧
     resources :genres, only: [:show]#ジャンル機能用
   end
 

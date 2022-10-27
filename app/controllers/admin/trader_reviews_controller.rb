@@ -1,10 +1,9 @@
 class Admin::TraderReviewsController < ApplicationController
+  before_action :find_params, only: [:edit, :update, :destroy]
   def index
     @trader = Trader.find(params[:trader_id])
     @reviews = Review.where(trader_id: @trader.id)
   end
-
-  before_action :find_params, only: [:edit, :update, :destroy]
 
   def show
     @client = Client.find(params[:client_id])

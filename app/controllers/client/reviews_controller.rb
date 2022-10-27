@@ -33,9 +33,6 @@ class Client::ReviewsController < ApplicationController
     @reviews=Review.where(trader_id: @trader.id)
   end
 
-  def show
-  end
-
   def edit
   end
 
