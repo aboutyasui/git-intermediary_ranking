@@ -20,6 +20,9 @@
               <td><%= link_to "編集する", edit_admin_client_post_comment_path(@client.id,comment.post.id,comment.id), class: "btn btn-success" %></td>
               <td><%= link_to "削除", admin_client_post_comment_path(@client.id,comment.post.id,comment.id), method: :delete %></td>
           <% end %>
+        </tbody>
+      </table>
+      <%= paginate @comments %>
     </div>
   </div>
 </div>

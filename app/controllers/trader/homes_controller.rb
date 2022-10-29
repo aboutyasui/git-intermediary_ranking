@@ -1,7 +1,7 @@
 class Trader::HomesController < ApplicationController
   def index
     @trader = Trader.find(params[:user_id])
-    @reviews=Review.where(trader_id: @trader.id)
+    @reviews=Review.where(trader_id: @trader.id).page(params[:page]).per(5)
   end
 
   def index_posts

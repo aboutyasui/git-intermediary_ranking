@@ -30,7 +30,7 @@ class Client::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews=Review.where(trader_id: @trader.id)
+    @reviews=Review.where(trader_id: @trader.id).page(params[:page]).per(5)
   end
 
   def edit

@@ -6,26 +6,27 @@
 				<%= @trader.review_avg(@trader) %>
 			</h2>
 			<table class="table table-bordered table-condensed" >
-			  <thead>
-			    <tr>
-			      <th>顧客氏名</th>
-			      <th>点数</th>
-			      <th>コメント</th>
-			      <th colspan="2"></th>
-			    </tr>
-			  </thead>
+				<thead>
+					<tr>
+						<th>顧客氏名</th>
+						<th>点数</th>
+						<th>コメント</th>
+						<th colspan="2"></th>
+					</tr>
+				</thead>
 				<tbody>
-				  <% @reviews.each do |review| %>
-					  <tr>
-					    <td><%= link_to review.client.name,admin_client_trader_review_path(review.client.id,review.id) %></td>
-					    <td><%= review.star %></td>
-					    <td><%= review.review_comment %></td>
-					    <td><%= link_to "編集",edit_admin_client_trader_review_path(review.client.id,review.id), class: "btn btn-sm btn-success" %></td>
-					    <td><%= link_to "削除",admin_client_trader_review_path(review.client.id,review.id), data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger",method: :delete %></td>
-					  </tr>
+					<% @reviews.each do |review| %>
+						<tr>
+							<td><%= link_to review.client.name,admin_client_trader_review_path(review.client.id,review.id) %></td>
+							<td><%= review.star %></td>
+							<td><%= review.review_comment %></td>
+							<td><%= link_to "編集",edit_admin_client_trader_review_path(review.client.id,review.id), class: "btn btn-sm btn-success" %></td>
+							<td><%= link_to "削除",admin_client_trader_review_path(review.client.id,review.id), data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger",method: :delete %></td>
+						</tr>
 					<% end %>
 				</tbody>
 			</table>
+			<%= paginate @reviews %>
 		</div>
 	</div>
 </div>

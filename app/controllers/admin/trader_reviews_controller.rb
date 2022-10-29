@@ -2,12 +2,12 @@ class Admin::TraderReviewsController < ApplicationController
   before_action :find_params, only: [:edit, :update, :destroy]
   def index
     @trader = Trader.find(params[:trader_id])
-    @reviews = Review.where(trader_id: @trader.id)
+    @reviews = Review.where(trader_id: @trader.id).page(params[:page]).per(5)
   end
 
   def show
     @client = Client.find(params[:client_id])
-    @reviews = Review.where(client_id: @client.id)
+    @reviews = Review.where(client_id: @client.id).page(params[:page]).per(5)
   end
 
   def edit
