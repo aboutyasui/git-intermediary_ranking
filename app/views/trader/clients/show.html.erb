@@ -40,7 +40,7 @@
 
 			<p>
 				レビュー履歴 : <%= @client.reviews.count%><br>
-				<%= link_to " 一覧へ", trader_client_review_path(@client.id,@client.reviews), class: "glyphicon glyphicon-folder-open btn btn-info" %>
+				<%= link_to " 一覧へ", trader_client_reviews_path(@client.id), class: "glyphicon glyphicon-folder-open btn btn-info" %>
 			</p>
 			<p>
 				コメント履歴 : <%= @comments.count%>件<br>

@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     end
     #顧客情報
     resources :clients, only: [:show] do
-      resources :reviews, only: [:show]#特定の顧客のレビュー一覧
+      resources :reviews, only: [:index]#特定の顧客のレビュー一覧
       resources :comments, only: [:index]#特定の顧客のコメント一覧
     end
 
