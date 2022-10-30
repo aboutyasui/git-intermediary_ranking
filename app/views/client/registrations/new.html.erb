@@ -1,53 +1,55 @@
-<h2>Sign up</h2>
+<div class="container px-5 px-sm-0">
+  <h2>新規登録（顧客側）</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "client/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "client/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  <br>
-
-  <div class="field">
-    <%= f.label :"ご職業（選択）", class: "col-sm-4 control-label" %><br />
-    <div class="col-xs-10 radio">
-      <%= f.radio_button :work, Client.works.key(0) %>
-      <%= f.label :work, Client.works_i18n[:architecture] %>
+    <div class="field">
+      <%= f.label :name, "氏名" %><br />
+      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
     </div>
-    <div class="col-xs-10 radio">
-      <%= f.radio_button :work, Client.works.key(1), checked: true %>
-      <%= f.label :work, Client.works_i18n[:others]%>
+
+    <div class="field">
+      <%= f.label :email, "メールアドレス" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
-  </div>
-  <br>
+    <br>
 
-  <div class="form-group col-xs-9">
-    <%= f.label :"電話番号", class: "col-sm-4 control-label" %><br />
-    <%= f.text_field :telephone_number, class: "col-sm-4 form-control-static" %>
-  </div>
+    <div class="field">
+      <%= f.label :"ご職業（選択）", class: "col-sm-4 control-label" %><br />
+      <div class="col-xs-10 radio">
+        <%= f.radio_button :work, Client.works.key(0) %>
+        <%= f.label :work, Client.works_i18n[:architecture] %>
+      </div>
+      <div class="col-xs-10 radio">
+        <%= f.radio_button :work, Client.works.key(1), checked: true %>
+        <%= f.label :work, Client.works_i18n[:others]%>
+      </div>
+    </div>
+    <br>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="form-group col-xs-9">
+      <%= f.label :telephone_number, "電話番号" , class: "col-sm-4 control-label" %><br />
+      <%= f.text_field :telephone_number, class: "col-sm-4 form-control-static" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password, "パスワード" %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> 文字以内)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label :password_confirmation, "パスワード（確認用）" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
 
-<%= render "client/shared/links" %>
+    <div class="actions">
+      <%= f.submit "サインインする" %>
+    </div>
+  <% end %>
+
+  <%= render "client/shared/links" %>
+</div>
