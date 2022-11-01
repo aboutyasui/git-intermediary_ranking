@@ -65,7 +65,6 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index]#特定の顧客のレビュー一覧
       resources :comments, only: [:index]#特定の顧客のコメント一覧
     end
-
     #投稿
     resources :posts, only: [:new,:create,:show,:edit,:update,:destroy]
     get 'index_posts' => 'homes#index_posts'#全体の投稿一覧
