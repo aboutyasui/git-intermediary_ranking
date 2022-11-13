@@ -25,7 +25,7 @@ class HomesController < ApplicationController
     end
 
     @traders = Kaminari.paginate_array(traders).page(params[:page]).per(5)
-    #Kaminari.paginate_array → pageメソッドを配列に対して用いる場合に必要な記述
+    #Kaminari.paginate_array → pageメソッドを配列（Rubyの型）に対して用いる場合に必要な記述
     @clients = Client.page(params[:page]).per(5)
     @genres = Genre.all
   end
